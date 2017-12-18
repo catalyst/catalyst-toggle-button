@@ -57,3 +57,27 @@ To use this version, include it's script instead of the ES6 version and make sur
 <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="node_modules/@webcomponents/shadycss/custom-style-interface.min.js"></script>
 ```
+
+## Contributing
+
+Project dependencies are managed through [Yarn](https://yarnpkg.com/lang/en/docs/install/) (not npm).  
+Install dependencies with:
+
+```sh
+yarn
+```
+
+[Gulp](https://gulpjs.com/) is used to build the source files (```./src```) into the distribution files (```./dist```).  
+Build with:
+
+```sh
+npm run build
+```
+
+Docs are build with [Polymer](https://www.polymer-project.org/), the [Polymer Build Tool](https://github.com/Polymer/polymer-build) and the [Polymer Analyzer](https://github.com/Polymer/polymer-analyzer).  
+To build the docs:
+
+```sh
+npm run analyze
+npm run build-docs
+```

@@ -6,8 +6,10 @@
   "repository": "git@gitlab.wgtn.cat-it.co.nz:rebeccastevens/catalyst-toggle-button.git",
   "main": "src/catalyst-toggle-button.js",
   "scripts": {
-    "build": "gulp",
-    "postinstall" : "gulp fix-dependency-tree"
+    "build": "node ./node_modules/gulp/bin/gulp.js",
+    "analyze": "node ./node_modules/polymer-cli/bin/polymer.js analyze > analysis.json",
+    "build-docs": "node ./node_modules/polymer-cli/bin/polymer.js build",
+    "postinstall": "node ./node_modules/gulp/bin/gulp.js fix-dependency-tree"
   },
   "devDependencies": {
     "@webcomponents/shadycss": "^1.1.0",
@@ -51,6 +53,7 @@
     "paper-styles": "https://github.com/PolymerElements/paper-styles#1 - 2",
     "paper-toast": "https://github.com/PolymerElements/paper-toast#1 - 2",
     "polymer": "https://github.com/Polymer/polymer#1.9 - 2",
+    "polymer-cli": "^1.5.7",
     "prism": "^1.9.0",
     "prism-element": "https://github.com/PolymerElements/prism-element#1 - 2"
   }

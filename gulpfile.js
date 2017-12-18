@@ -90,7 +90,7 @@ gulp.task('build', ['clean-dist', 'inject'], () => {
 // Fix dependency tree.
 gulp.task('fix-dependency-tree', () => {
   // Some components want access to "node_modules/@webcomponents/" without going through "@webcomponents"
-  return gulp.src('./node_modules/@webcomponents/*')
+  return gulp.src('./node_modules/@webcomponents/**/*')
     .pipe(gulp.dest('./node_modules/'));
 });
 
