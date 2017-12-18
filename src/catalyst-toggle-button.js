@@ -36,7 +36,7 @@
     }
 
     /**
-     * The element class.
+     * Class for the <catalyst-toggle-button> element.
      */
     class CatalystToggleButton extends HTMLElement {
 
