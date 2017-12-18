@@ -4,13 +4,13 @@ stages:
 pages:
   stage: pages
   script:
-  - yarn
-  - npm run build-docs
+    - yarn
+    - npm run build-docs
   artifacts:
     paths:
-    - build/docs
+      - build/docs
   only:
-  - master
+    - master
   tags:
     - node
     - yarn
