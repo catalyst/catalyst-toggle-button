@@ -16,6 +16,10 @@ Then simply use it like any other tag:
 <catalyst-toggle-button>My Button</catalyst-toggle-button>
 ```
 
+## Docs
+
+TODO:
+
 ## Demos
 
 There are 2 demos available:
