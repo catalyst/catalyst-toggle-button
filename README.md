@@ -20,8 +20,8 @@ Then simply use it like any other tag:
 
 There are 2 demos available:
 
-* [demo.es5.html](./demo.es5.html) - Use the ES5 transpiled component
-* [demo.es6.html](./demo.es6.html) - Use the original ES6 component
+* [demo.es5.html](./demo/demo.es5.html) - Uses the ES5 transpiled component
+* [demo.es6.html](./demo/demo.es6.html) - Uses the original ES6 component
 
 ## Compatibility
 
