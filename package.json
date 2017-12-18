@@ -1,0 +1,25 @@
+{
+  "name": "catalyst-toggle-button",
+  "version": "1.0.0",
+  "description": "A toggle button web component.",
+  "private": true,
+  "repository": "git@gitlab.wgtn.cat-it.co.nz:rebeccastevens/catalyst-toggle-button.git",
+  "main": "src/catalyst-toggle-button.js",
+  "scripts": {
+    "build": "gulp"
+  },
+  "devDependencies": {
+    "@webcomponents/shadycss": "^1.1.0",
+    "@webcomponents/webcomponentsjs": "^1.0.20",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-minify": "^0.2.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-inject": "^4.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0"
+  }
+}
