@@ -3,6 +3,7 @@ stages:
 
 pages:
   stage: pages
+  image: node:8.9.3
   script:
     - yarn
     - npm run build-docs
@@ -12,5 +13,4 @@ pages:
   only:
     - master
   tags:
-    - node
-    - yarn
+    - docker
