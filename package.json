@@ -6,7 +6,8 @@
   "repository": "git@gitlab.wgtn.cat-it.co.nz:rebeccastevens/catalyst-toggle-button.git",
   "main": "src/catalyst-toggle-button.js",
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "postinstall" : "gulp fix-dependency-tree"
   },
   "devDependencies": {
     "@webcomponents/shadycss": "^1.1.0",

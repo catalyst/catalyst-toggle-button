@@ -87,6 +87,13 @@ gulp.task('build', ['clean-dist', 'inject'], () => {
   return gulp;
 });
 
+// Fix dependency tree.
+gulp.task('fix-dependency-tree', () => {
+  // Some components want access to "node_modules/@webcomponents/" without going through "@webcomponents"
+  return gulp.src('./node_modules/@webcomponents/*')
+    .pipe(gulp.dest('./node_modules/'));
+});
+
 // Default task.
 gulp.task('default', ['build'], () => {
   return gulp.src(tmpPath, {read: false}).pipe(clean());

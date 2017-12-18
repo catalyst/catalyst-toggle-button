@@ -1,16 +1,19 @@
-image: node
+stages:
+  - pages
 
 pages:
-  cache:
-    paths:
-    - node_modules/
-
+  stage: pages
   script:
-  - npm install
-
+  - yarn
+  - gulp
+  - polymer build
   artifacts:
     paths:
-    - public
-
+    - build/docs
   only:
   - master
+  tags:
+    - yarn
+    - gulp
+    - polymer2
+
