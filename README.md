@@ -16,16 +16,9 @@ Then simply use it like any other tag:
 <catalyst-toggle-button>My Button</catalyst-toggle-button>
 ```
 
-## Docs
+## Docs ans Demos
 
-TODO:
-
-## Demos
-
-There are 2 demos available:
-
-* [demo.es5.html](./demo/demo.es5.html) - Uses the ES5 transpiled component
-* [demo.es6.html](./demo/demo.es6.html) - Uses the original ES6 component
+Docs and demos are available on [gitlab pages](http://rebeccastevens.pages.gitlab.wgtn.cat-it.co.nz/catalyst-toggle-button/).
 
 ## Compatibility
 
@@ -60,12 +53,16 @@ To use this version, include it's script instead of the ES6 version and make sur
 
 ## Contributing
 
+### Dependencies
+
 Project dependencies are managed through [Yarn](https://yarnpkg.com/lang/en/docs/install/) (not npm).  
 Install dependencies with:
 
 ```sh
 yarn
 ```
+
+### Building
 
 [Gulp](https://gulpjs.com/) is used to build the source files (```./src```) into the distribution files (```./dist```).  
 Build with:
@@ -74,8 +71,13 @@ Build with:
 npm run build
 ```
 
-Docs are build with [Polymer](https://www.polymer-project.org/), the [Polymer Build Tool](https://github.com/Polymer/polymer-build) and the [Polymer Analyzer](https://github.com/Polymer/polymer-analyzer).  
-To build the docs:
+### Docs
+
+Docs are build with [Polymer](https://www.polymer-project.org/), the [Polymer Build Tool](https://github.com/Polymer/polymer-build) and the [Polymer Analyzer](https://github.com/Polymer/polymer-analyzer).
+
+Docs will automatically be update on gitlab pages according to the ```analysis.json``` file whenever changes are made to the master branch.
+
+To build the docs manually:
 
 ```sh
 npm run analyze
