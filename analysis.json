@@ -70,24 +70,30 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 171,
+              "line": 178,
               "column": 6
             },
             "end": {
-              "line": 199,
+              "line": 206,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "name"
+              "name": "name",
+              "type": "string",
+              "description": "The name of the attribute that changed."
             },
             {
-              "name": "oldValue"
+              "name": "oldValue",
+              "type": "*",
+              "description": "The original value of the attribute that changed."
             },
             {
-              "name": "newValue"
+              "name": "newValue",
+              "type": "*",
+              "description": "The new value of the attribute that changed."
             }
           ]
         },
@@ -97,11 +103,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 206,
+              "line": 213,
               "column": 6
             },
             "end": {
-              "line": 224,
+              "line": 231,
               "column": 7
             }
           },
@@ -119,11 +125,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 231,
+              "line": 238,
               "column": 6
             },
             "end": {
-              "line": 233,
+              "line": 240,
               "column": 7
             }
           },
@@ -141,11 +147,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 240,
+              "line": 247,
               "column": 6
             },
             "end": {
-              "line": 256,
+              "line": 263,
               "column": 7
             }
           },
@@ -170,7 +176,7 @@
           "column": 4
         },
         "end": {
-          "line": 257,
+          "line": 264,
           "column": 5
         }
       },

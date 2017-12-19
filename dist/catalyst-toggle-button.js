@@ -168,6 +168,13 @@
 
       /**
        * Fired when any of the attributes in the `observedAttributes` array change.
+       *
+       * @param {string} name
+       *   The name of the attribute that changed.
+       * @param {*} oldValue
+       *   The original value of the attribute that changed.
+       * @param {*} newValue
+       *   The new value of the attribute that changed.
        */
       attributeChangedCallback(name, oldValue, newValue) {
         const hasValue = newValue !== null;
