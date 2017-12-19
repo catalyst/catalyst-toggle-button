@@ -75,11 +75,19 @@ npm run build
 
 Docs are build with [Polymer](https://www.polymer-project.org/), the [Polymer Build Tool](https://github.com/Polymer/polymer-build) and the [Polymer Analyzer](https://github.com/Polymer/polymer-analyzer).
 
-Docs will automatically be update on gitlab pages according to the ```analysis.json``` file whenever changes are made to the master branch.
+Docs will automatically be update on gitlab pages according to the ```analysis.json``` file whenever a change is made to the master branch.
+(Ideally the update should only happen when ```analysis.json``` is changed. [See here for details on this issue](https://gitlab.com/gitlab-org/gitlab-ce/issues/19232))
+
+To update ```analysis.json``` run:
+
+```sh
+npm run analyze
+```
+
+Please note that current the demo files are not automatically included in ```analysis.json``` and the different builds of the component will also be analyzed. Manually edit ```analysis.json``` to add the demos and remove the extra information on the different builds.  (This should be automatic in the future.)
 
 To build the docs manually:
 
 ```sh
-npm run analyze
 npm run build-docs
 ```
