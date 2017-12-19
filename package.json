@@ -9,7 +9,7 @@
     "build": "node ./node_modules/gulp/bin/gulp.js",
     "analyze": "node ./node_modules/polymer-cli/bin/polymer.js analyze > analysis.json",
     "build-docs": "node ./node_modules/polymer-cli/bin/polymer.js build",
-    "postinstall": "node ./node_modules/gulp/bin/gulp.js fix-dependency-tree"
+    "postinstall": "[ \"${PWD##*/}\" != node_modules ] && node ./node_modules/gulp/bin/gulp.js fix-dependency-tree || :"
   },
   "devDependencies": {
     "@webcomponents/shadycss": "^1.1.0",
