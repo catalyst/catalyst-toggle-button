@@ -7,9 +7,10 @@ pages:
   script:
     - yarn
     - npm run build-docs
+    - mv build/docs public
   artifacts:
     paths:
-      - build/docs
+      - public
   only:
     - master
   tags:
