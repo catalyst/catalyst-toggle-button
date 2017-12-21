@@ -7,7 +7,7 @@
   "main": "src/catalyst-toggle-button.js",
   "scripts": {
     "build": "node ./node_modules/gulp/bin/gulp.js",
-    "analyze": "node ./node_modules/polymer-cli/bin/polymer.js analyze --input dist/catalyst-flip-button.js > analysis.json && node ./node_modules/gulp/bin/gulp.js analysis-fixer",
+    "analyze": "node ./node_modules/polymer-cli/bin/polymer.js analyze --input dist/catalyst-toggle-button.js > analysis.json && node ./node_modules/gulp/bin/gulp.js analysis-fixer",
     "build-docs": "node ./node_modules/polymer-cli/bin/polymer.js build",
     "tests": "node ./node_modules/web-component-tester/bin/wct",
     "postinstall": "[ \"${PWD##*/}\" != node_modules ] && node ./node_modules/gulp/bin/gulp.js fix-dependency-tree || :"

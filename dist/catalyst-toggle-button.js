@@ -54,7 +54,7 @@
        *
        * Name     | Cause
        * -------- |-------------
-       * `change` | Fired when the component's `flipped` value changes due to user interaction.
+       * `change` | Fired when the component's `pressed` value changes due to user interaction.
        *
        * ### Focus
        * To focus a catalyst-toggle-button, you can call the native `focus()` method as long as the
