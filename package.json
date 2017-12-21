@@ -7,23 +7,37 @@
   "main": "src/catalyst-toggle-button.js",
   "scripts": {
     "build": "node ./node_modules/gulp/bin/gulp.js",
-    "analyze": "node ./node_modules/polymer-cli/bin/polymer.js analyze > analysis.json",
+    "analyze": "node ./node_modules/polymer-cli/bin/polymer.js analyze --input dist/catalyst-flip-button.js > analysis.json && node ./node_modules/gulp/bin/gulp.js analysis-fixer",
     "build-docs": "node ./node_modules/polymer-cli/bin/polymer.js build",
+    "tests": "node ./node_modules/web-component-tester/bin/wct",
     "postinstall": "[ \"${PWD##*/}\" != node_modules ] && node ./node_modules/gulp/bin/gulp.js fix-dependency-tree || :"
   },
   "devDependencies": {
+    "@bower_components/accessibility-developer-tools": "GoogleChrome/accessibility-developer-tools#^2.10.0",
+    "@bower_components/async": "caolan/async#^1.5.0",
+    "@bower_components/chai": "chaijs/chai#^3.2.0",
+    "@bower_components/lodash": "lodash/lodash#^3.7.0",
+    "@bower_components/mocha": "mochajs/mocha#^3.1.2",
+    "@bower_components/sinon-chai": "domenic/sinon-chai#^2.7.0",
+    "@bower_components/sinonjs": "blittle/sinon.js#^1.14.1",
+    "@bower_components/stacky": "PolymerLabs/stacky#^1.3.0",
+    "@bower_components/test-fixture": "PolymerElements/test-fixture#^3.0.0",
+    "@bower_components/web-component-tester": "Polymer/web-component-tester#^6.4.1",
     "@webcomponents/shadycss": "^1.1.0",
     "@webcomponents/webcomponentsjs": "^1.0.20",
     "app-layout": "https://github.com/PolymerElements/app-layout#1 - 2",
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-minify": "^0.2.0",
+    "eslint": "^4.13.1",
+    "eslint-plugin-html": "^4.0.1",
     "font-roboto": "https://github.com/PolymerElements/font-roboto#^1.0.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-clean": "^0.3.2",
     "gulp-htmlmin": "^3.0.0",
     "gulp-inject": "^4.3.0",
+    "gulp-json-editor": "^2.2.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "iron-a11y-announcer": "https://github.com/PolymerElements/iron-a11y-announcer#1 - 2",
@@ -55,6 +69,10 @@
     "polymer": "https://github.com/Polymer/polymer#1.9 - 2",
     "polymer-cli": "^1.5.7",
     "prism": "^1.9.0",
-    "prism-element": "https://github.com/PolymerElements/prism-element#1 - 2"
+    "prism-element": "https://github.com/PolymerElements/prism-element#1 - 2",
+    "web-component-tester": "^6.4.1"
+  },
+  "engines": {
+    "yarn": ">= 1.0.0"
   }
 }

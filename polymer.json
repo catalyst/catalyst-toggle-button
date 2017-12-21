@@ -17,13 +17,13 @@
     "bundle": false,
     "js": {
       "compile": false,
-      "minify": true
+      "minify": false
     },
     "css": {
-      "minify": true
+      "minify": false
     },
     "html": {
-      "minify": true
+      "minify": false
     },
     "addServiceWorker": false,
     "addPushManifest": false,

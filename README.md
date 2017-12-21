@@ -55,7 +55,7 @@ To use this version, include it's script instead of the ES6 version and make sur
 
 ### Dependencies
 
-Project dependencies are managed through [Yarn](https://yarnpkg.com/lang/en/docs/install/) (not npm).  
+Project dependencies are managed through [Yarn](https://yarnpkg.com/lang/en/docs/install/) (not npm directly).  
 Install dependencies with:
 
 ```sh
@@ -75,19 +75,35 @@ npm run build
 
 Docs are build with [Polymer](https://www.polymer-project.org/), the [Polymer Build Tool](https://github.com/Polymer/polymer-build) and the [Polymer Analyzer](https://github.com/Polymer/polymer-analyzer).
 
-Docs will automatically be update on gitlab pages according to the ```analysis.json``` file whenever a change is made to the master branch.
-(Ideally the update should only happen when ```analysis.json``` is changed. [See here for details on this issue](https://gitlab.com/gitlab-org/gitlab-ce/issues/19232))
-
-To update ```analysis.json``` run:
-
-```sh
-npm run analyze
-```
-
-Please note that current the demo files are not automatically included in ```analysis.json``` and the different builds of the component will also be analyzed. Manually edit ```analysis.json``` to add the demos and remove the extra information on the different builds.  (This should be automatic in the future.)
+Docs will automatically be update on GitLab pages whenever a change is pushed to the master branch.
 
 To build the docs manually:
 
 ```sh
+npm run analyze
 npm run build-docs
 ```
+
+The analyze script will update ```analysis.json``` which the docs are then built from.
+
+## Testing
+
+Testing is done using the [web-component-tester](https://github.com/Polymer/web-component-tester).
+
+### Running Tests
+
+#### On The Command Line
+
+```sh
+npm run tests
+```
+
+#### In The Browser
+
+First start up a local server:
+
+```sh
+python -m SimpleHTTPServer 8000
+```
+
+Then visit http://0.0.0.0:8000/test/ to see the tests in action.

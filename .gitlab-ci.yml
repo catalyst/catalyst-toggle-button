@@ -6,6 +6,7 @@ pages:
   image: node:8.9.3
   script:
     - yarn
+    - npm run analyze
     - npm run build-docs
     - mv build/docs public
   artifacts:

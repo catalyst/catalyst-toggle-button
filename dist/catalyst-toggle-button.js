@@ -11,12 +11,16 @@
   function createElement() {
 
     /**
-     * The name of the element tag.
+     * @constant {string}
+     *   The name of the element tag.
      */
     const elementTagName = 'catalyst-toggle-button';
 
     /**
      * Key codes.
+     *
+     * @readonly
+     * @enum {number}
      */
     const KEYCODE = {
       SPACE: 32,
@@ -24,7 +28,8 @@
     };
 
     /**
-     * The template of the component.
+     * @constant {HTMLTemplateElement}
+     *   The template of the component.
      */
     const template = document.createElement('template');
     template.innerHTML = `<style>:host{display:inline-block;align-items:flex-start;cursor:default;margin:0;padding:2px 7px;color:#000000;background-color:#dddddd;border-color:#dddddd;border-width:2px;border-style:outset;border-image:initial;font:400 13.3333px Arial;text-rendering:auto;text-transform:none;text-indent:0;text-shadow:none;text-align:center;letter-spacing:normal;word-spacing:normal;-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-appearance:button;-moz-appearance:button;appearance:button}:host([pressed]){padding:2px 6px 2px 8px;background-color:#BBBBBB;border-color:#AAAAAA;border-style:inset;text-shadow:0.5px 0.5px 1px #F0F0F0}:host([hidden]){display:none}
@@ -37,15 +42,46 @@
     }
 
     /**
-     * Class for the <catalyst-toggle-button> element.
-     */
+       * `<catalyst-toggle-button>` is a toggle button web component.
+       *
+       *     <catalyst-toggle-button>Button</catalyst-toggle-button>
+       *
+       * It may include optional form control setting for use in a form.
+       *
+       *     <catalyst-toggle-button name="form-element-name" value="value">Button</catalyst-toggle-button>
+       *
+       * ### Events
+       *
+       * Name     | Cause
+       * -------- |-------------
+       * `change` | Fired when the component's `flipped` value changes due to user interaction.
+       *
+       * ### Focus
+       * To focus a catalyst-toggle-button, you can call the native `focus()` method as long as the
+       * element has a tab index. Similarly, `blur()` will blur the element.
+       *
+       * ### Styling
+       *
+       * There are no custom properties or mixins available for styling this component.
+       *
+       * @class
+       * @extends HTMLElement
+       *
+       * @group Catalyst Elements
+       * @element catalyst-toggle-button
+       * @demo demo/demo.es5.html ES5 Component Demo
+       * @demo demo/demo.es6.html ES6 Component Demo
+       */
     class CatalystToggleButton extends HTMLElement {
 
       /**
        * The attributes on this element to observe.
+       *
+       * @returns {Array.<string>}
+       *   The attributes this element is observing for changes.
        */
       static get observedAttributes() {
-        return ['pressed', 'disabled'];
+        return ['pressed', 'disabled', 'name', 'value', 'form'];
       }
 
       /**
@@ -57,6 +93,17 @@
         // Create a shadow root and stamp out the template's content inside.
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+        /**
+         * The form element needs to be in the lightDom to work with form elements.
+         *
+         * @property {HTMLElement} _formElement
+         *   The element that will be submitting as part of a form to represent this component.
+         */
+        this._formElement = document.createElement('input');
+        this._formElement.type = 'checkbox';
+        this._formElement.style.display = 'none';
+        this.appendChild(this._formElement);
       }
 
       /**
@@ -138,6 +185,8 @@
 
       /**
        * Getter for `pressed`.
+       *
+       * @returns {boolean}
        */
       get pressed() {
         return this.hasAttribute('pressed');
@@ -161,9 +210,79 @@
 
       /**
        * Getter for `disabled`.
+       *
+       * @returns {boolean}
        */
       get disabled() {
         return this.hasAttribute('disabled');
+      }
+
+      /**
+       * Setter for `name`.
+       *
+       * @param {*} value
+       *   The value to set.
+       */
+      set name(value) {
+        this.setAttribute('name', new String(value));
+      }
+
+      /**
+       * Getter for `name`.
+       *
+       * @returns {string}
+       */
+      get name() {
+        if (this.hasAttribute('name')) {
+          return this.getAttribute('name');
+        } else {
+          return '';
+        }
+      }
+
+      /**
+       * Setter for `form`.
+       *
+       * @param {*} value
+       *   The value to set.
+       */
+      set form(value) {
+        this._formElement.form = value
+        if (this._formElement.hasAttribute('form')) {
+          this.setAttribute('form', this._formElement.getAttribute('form'));
+        }
+      }
+
+      /**
+       * Getter for `form`.
+       *
+       * @returns {HTMLFormElement}
+       */
+      get form() {
+        return this._formElement.form;
+      }
+
+      /**
+       * Setter for `value`.
+       *
+       * @param {*} value
+       *   The value to set.
+       */
+      set value(value) {
+        this.setAttribute('value', new String(value));
+      }
+
+      /**
+       * Getter for `value`.
+       *
+       * @returns {string}
+       */
+      get value() {
+        if (this.hasAttribute('value')) {
+          return this.getAttribute('value');
+        } else {
+          return 'on';
+        }
       }
 
       /**
@@ -203,6 +322,21 @@
               }
             }
             break;
+
+          case 'name':
+            // Update the form element's name.
+            this._formElement.name = newValue;
+            break;
+
+          case 'value':
+            // Update the form element's value.
+            this._formElement.value = newValue;
+            break;
+
+          case 'form':
+            // Update the form element's form.
+            this._formElement.for = newValue;
+            break;
         }
       }
 
@@ -233,10 +367,8 @@
 
       /**
        * Called when this element is clicked.
-       *
-       * @param {MouseEvent} event
        */
-      _onClick(event) {
+      _onClick() {
         this._togglePressed();
       }
 
