@@ -32,7 +32,7 @@ Install via npm:
 npm install --save @webcomponents/webcomponentsjs @webcomponents/shadycss
 ```
 
-Then include on each page (before importing the component's efinition):
+Then include on each page (before importing the component's definition):
 
 ```html
 <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
