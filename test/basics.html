@@ -8,7 +8,7 @@
   <script src="../node_modules/@webcomponents/shadycss/custom-style-interface.min.js"></script>
 
   <!-- Web Tester -->
-  <script src="../node_modules/web-component-tester/browser.js"></script>
+  <script src="../node_modules/@bower_components/web-component-tester/browser.js"></script>
 
   <!-- Element -->
   <script src="../dist/catalyst-toggle-button.js"></script>
@@ -108,9 +108,14 @@
            * Test clicking the element.
            */
           test('Click Once', (done) => {
+            let testRunning = true;
+
             // Change event needs to be fired.
             element.addEventListener('change', () => {
-              done();
+              if (testRunning) {
+                testRunning = false;
+                done();
+              }
             });
 
             element.click();
@@ -121,9 +126,12 @@
             expect(element.getAttribute('aria-pressed')).to.equal('true');
 
             setTimeout(function () {
-              assert(false, 'Change event was not fired within 100 ms.');
-              done();
-            }, 100);
+              if (testRunning) {
+                testRunning = false;
+                assert(false, 'Change event was not fired within 10 ms.');
+                done();
+              }
+            }, 10);
           });
 
           /**
@@ -141,13 +149,17 @@
           /**
            * Test clicking the element when disabled.
            */
-           test('Click When Disabled', () => {
+           test('Click When Disabled', (done) => {
+            let testRunning = true;
             element.disabled = true;
 
             // Change event should not be fired.
             element.addEventListener('change', () => {
-              assert(false, 'Change event should not be fired.');
-              done();
+              if (testRunning) {
+                testRunning = false;
+                assert(false, 'Change event should not be fired.');
+                done();
+              }
             });
 
             element.click();
@@ -157,8 +169,11 @@
             expect(element.getAttribute('aria-pressed')).to.equal('false');
 
             setTimeout(function () {
-              done();
-            }, 100);
+              if (testRunning) {
+                testRunning = false;
+                done();
+              }
+            }, 10);
           });
         });
 

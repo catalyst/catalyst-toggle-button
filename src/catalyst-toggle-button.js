@@ -1,6 +1,4 @@
 /**
- * A toggle button web component.
- *
  * Based off: https://github.com/GoogleChromeLabs/howto-components/tree/master/elements/howto-toggle-button
  */
 (function() {
@@ -41,36 +39,36 @@
     }
 
     /**
-       * `<catalyst-toggle-button>` is a toggle button web component.
-       *
-       *     <catalyst-toggle-button>Button</catalyst-toggle-button>
-       *
-       * It may include optional form control setting for use in a form.
-       *
-       *     <catalyst-toggle-button name="form-element-name" value="value">Button</catalyst-toggle-button>
-       *
-       * ### Events
-       *
-       * Name     | Cause
-       * -------- |-------------
-       * `change` | Fired when the component's `pressed` value changes due to user interaction.
-       *
-       * ### Focus
-       * To focus a catalyst-toggle-button, you can call the native `focus()` method as long as the
-       * element has a tab index. Similarly, `blur()` will blur the element.
-       *
-       * ### Styling
-       *
-       * There are no custom properties or mixins available for styling this component.
-       *
-       * @class
-       * @extends HTMLElement
-       *
-       * @group Catalyst Elements
-       * @element catalyst-toggle-button
-       * @demo demo/demo.es5.html ES5 Component Demo
-       * @demo demo/demo.es6.html ES6 Component Demo
-       */
+     * `<catalyst-toggle-button>` is a toggle button web component.
+     *
+     *     <catalyst-toggle-button>Button</catalyst-toggle-button>
+     *
+     * It may include optional form control setting for use in a form.
+     *
+     *     <catalyst-toggle-button name="form-element-name" value="value">Button</catalyst-toggle-button>
+     *
+     * ### Events
+     *
+     * Name     | Cause
+     * -------- |-------------
+     * `change` | Fired when the component's `pressed` value changes due to user interaction.
+     *
+     * ### Focus
+     * To focus a catalyst-toggle-button, you can call the native `focus()` method as long as the
+     * element has a tab index. Similarly, `blur()` will blur the element.
+     *
+     * ### Styling
+     *
+     * There are no custom properties or mixins available for styling this component.
+     *
+     * @class
+     * @extends HTMLElement
+     *
+     * @group Catalyst Elements
+     * @element catalyst-toggle-button
+     * @demo demo/demo.es5.html ES5 Component Demo
+     * @demo demo/demo.es6.html ES6 Component Demo
+     */
     class CatalystToggleButton extends HTMLElement {
 
       /**

@@ -8,7 +8,7 @@
   <script src="../node_modules/@webcomponents/shadycss/custom-style-interface.min.js"></script>
 
   <!-- Web Tester -->
-  <script src="../node_modules/web-component-tester/browser.js"></script>
+  <script src="../node_modules/@bower_components/web-component-tester/browser.js"></script>
 
   <!-- Element -->
   <script src="../dist/catalyst-toggle-button.js"></script>
@@ -51,7 +51,7 @@
         suite('Attributes & Properties', () => {
 
           /**
-           * Test name.
+           * Test element has name.
            */
           test('name', () => {
             expect(element.hasAttribute('name')).to.be.true;
@@ -60,42 +60,31 @@
           });
 
           /**
-           * Test value.
+           * Test element has value.
            */
           test('value', () => {
             expect(element).to.have.property('value', 'bar');
           });
 
           /**
-           * Test form.
+           * Test element has form.
            */
           test('form', () => {
             expect(element).to.have.property('form', form);
           });
         });
-      });
-
-      /**
-       * Test the attributes and properties of the element in it's inital state.
-       */
-      suite('Submitting', () => {
 
         /**
-         * Test form.
+         * Test the form.
          */
-        test('Basic Submit', (done) => {
-          form.addEventListener('submit', (event) => {
-            event.preventDefault();
+        suite('Form', () => {
 
+          /**
+           * Test form has element.
+           */
+           test('Element is part of the form', () => {
             expect(form.elements['foo']).to.exist;
-            expect(form.elements['foo']).to.have.property('name', 'foo');
-            expect(form.elements['foo']).to.have.property('value', 'bar');
-
-            done();
           });
-
-          // FIXME: Submit the form with out reloading the page.
-          // form.submit();
         });
       });
     });

@@ -2,12 +2,19 @@
   "extends": "eslint:recommended",
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "mocha": true
   },
   "plugins": [
-    "html"
+    "html",
+    "mocha"
   ],
   "globals": {
-    "ShadyCSS": false
+    "ShadyCSS": false,
+    "expect": false,
+    "should": false,
+    "assert": false,
+    "fixture": false,
+    "WCT": false
   }
 }
