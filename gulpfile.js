@@ -2,7 +2,6 @@
 
 // Libraries.
 const gulp = require('gulp');
-const autoprefixer = require('gulp-autoprefixer');
 const babel = require('gulp-babel');
 const clean = require('gulp-clean');
 const eslint = require('gulp-eslint');
@@ -12,6 +11,7 @@ const inject = require('gulp-inject');
 const jsonEditor = require('gulp-json-editor');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');
+const postcss = require('gulp-postcss');
 const sass = require('gulp-sass');
 const sassLint = require('gulp-sass-lint');
 
@@ -86,7 +86,7 @@ gulp.task('html-min', () => {
 gulp.task('sass-compile', () => {
   return gulp.src(srcPath + '/**/*.scss')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(autoprefixer())
+    .pipe(postcss())
     .pipe(replace('\n', ''))
     .pipe(gulp.dest(tmpPath));
 });
