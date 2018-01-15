@@ -1,0 +1,4 @@
+# node_modules and bower_components are automatically ignored
+
+build/
+dist/
