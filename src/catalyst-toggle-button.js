@@ -393,21 +393,32 @@
       }
     }
 
-    // Make the class globally accessible.
-    window.CatalystToggleButton = CatalystToggleButton;
+    // Make the class globally accessible under the `CatalystElements` object.
+    window.CatalystElements.CatalystToggleButton = CatalystToggleButton;
 
     // Define the element.
     window.customElements.define(elementTagName, CatalystToggleButton);
   }
 
-  // If not using web component polyfills or if polyfills are ready, create the element.
-  if (window.WebComponents === undefined || window.WebComponents.ready) {
-    createElement();
+  // Define `CatalystElements` if it's not already defined.
+  if (window.CatalystElements === undefined) {
+    window.CatalystElements = {};
   }
-  // Otherwise wait until the polyfills is ready.
-  else {
-    window.addEventListener('WebComponentsReady', () => {
+
+  // If the `CatalystToggleButton` hasn't already been defined, define it.
+  if (window.CatalystElements.CatalystToggleButton === undefined) {
+    // If not using web component polyfills or if polyfills are ready, create the element.
+    if (window.WebComponents === undefined || window.WebComponents.ready) {
       createElement();
-    });
+    }
+    // Otherwise wait until the polyfills is ready.
+    else {
+      window.addEventListener('WebComponentsReady', () => {
+        createElement();
+      });
+    }
+  } else {
+    /* eslint no-console: 0 */
+    console.warn('CatalystToggleButton has already been defined, cannot redefine.');
   }
 })();
