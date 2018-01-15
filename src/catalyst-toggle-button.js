@@ -35,7 +35,7 @@
     // If using ShadyCSS.
     if (window.ShadyCSS !== undefined) {
       // Rename classes as needed to ensure style scoping.
-      ShadyCSS.prepareTemplate(template, elementTagName);
+      window.ShadyCSS.prepareTemplate(template, elementTagName);
     }
 
     /**
@@ -110,7 +110,7 @@
         // If using ShadyCSS.
         if (window.ShadyCSS !== undefined) {
           // Style the element.
-          ShadyCSS.styleElement(this);
+          window.ShadyCSS.styleElement(this);
         }
 
         // Upgrade the element's properties.
@@ -168,7 +168,7 @@
       /**
        * Setter for `pressed`.
        *
-       * @param {*} value
+       * @param {boolean} value
        *   If truthy, `pressed` will be set to true, otherwise `pressed` will be set to false.
        */
       set pressed(value) {
@@ -192,7 +192,7 @@
       /**
        * Setter for `disabled`.
        *
-       * @param {*} value
+       * @param {boolean} value
        *   If truthy, `disabled` will be set to true, otherwise `disabled` will be set to false.
        */
       set disabled(value) {
@@ -217,7 +217,7 @@
       /**
        * Setter for `name`.
        *
-       * @param {*} value
+       * @param {string} value
        *   The value to set.
        */
       set name(value) {
@@ -240,7 +240,7 @@
       /**
        * Setter for `form`.
        *
-       * @param {*} value
+       * @param {string} value
        *   The value to set.
        */
       set form(value) {
@@ -418,7 +418,7 @@
       });
     }
   } else {
-    /* eslint no-console: 0 */
+    // eslint-disable-next-line no-console
     console.warn('CatalystToggleButton has already been defined, cannot redefine.');
   }
 })();
