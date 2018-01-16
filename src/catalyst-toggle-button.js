@@ -1,7 +1,11 @@
-/**
- * Based off: https://github.com/GoogleChromeLabs/howto-components/tree/master/elements/howto-toggle-button
- */
 (function() {
+
+  /**
+   * Namespace for all the Catalyst Elements.
+   *
+   * @namespace CatalystElements
+   */
+  window.CatalystElements = window.CatalystElements || {};
 
   /**
    * Create the custom element
@@ -47,12 +51,6 @@
      *
      *     <catalyst-toggle-button name="form-element-name" value="value">Button</catalyst-toggle-button>
      *
-     * ### Events
-     *
-     * Name     | Cause
-     * -------- |-------------
-     * `change` | Fired when the component's `pressed` value changes due to user interaction.
-     *
      * ### Focus
      * To focus a catalyst-toggle-button, you can call the native `focus()` method as long as the
      * element has a tab index. Similarly, `blur()` will blur the element.
@@ -65,6 +63,7 @@
      * @extends HTMLElement
      *
      * @customElement
+     * @memberof CatalystElements
      * @group Catalyst Elements
      * @element catalyst-toggle-button
      * @demo demo/demo.es5.html ES5 Component Demo
@@ -92,16 +91,17 @@
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(template.content.cloneNode(true));
 
+        // The input element needs to be in the lightDom to work with form elements.
+
         /**
-         * The form element needs to be in the lightDom to work with form elements.
+         * The element that will be submitting as part of a form to represent this component.
          *
-         * @property {HTMLElement} _formElement
-         *   The element that will be submitting as part of a form to represent this component.
+         * @type {HTMLElement}
          */
-        this._formElement = document.createElement('input');
-        this._formElement.type = 'checkbox';
-        this._formElement.style.display = 'none';
-        this.appendChild(this._formElement);
+        this._inputElement = document.createElement('input');
+        this._inputElement.type = 'checkbox';
+        this._inputElement.style.display = 'none';
+        this.appendChild(this._inputElement);
       }
 
       /**
@@ -182,8 +182,9 @@
       }
 
       /**
-       * Getter for `pressed`.
+       * States whether or not this element is pressed.
        *
+       * @default false
        * @returns {boolean}
        */
       get pressed() {
@@ -207,8 +208,9 @@
       }
 
       /**
-       * Getter for `disabled`.
+       * States whether or not this element is disabled.
        *
+       * @default false
        * @returns {boolean}
        */
       get disabled() {
@@ -226,7 +228,7 @@
       }
 
       /**
-       * Getter for `name`.
+       * The name of this element. Used for forms.
        *
        * @returns {string}
        */
@@ -245,19 +247,19 @@
        *   The value to set.
        */
       set form(value) {
-        this._formElement.form = value
-        if (this._formElement.hasAttribute('form')) {
-          this.setAttribute('form', this._formElement.getAttribute('form'));
+        this._inputElement.form = value
+        if (this._inputElement.hasAttribute('form')) {
+          this.setAttribute('form', this._inputElement.getAttribute('form'));
         }
       }
 
       /**
-       * Getter for `form`.
+       * The form this element is apart of.
        *
        * @returns {HTMLFormElement}
        */
       get form() {
-        return this._formElement.form;
+        return this._inputElement.form;
       }
 
       /**
@@ -271,7 +273,7 @@
       }
 
       /**
-       * Getter for `value`.
+       * The value this element has. Used for forms.
        *
        * @returns {string}
        */
@@ -281,6 +283,15 @@
         } else {
           return 'on';
         }
+      }
+
+      /**
+       * The input element.
+       *
+       * @returns {HTMLInputElement}
+       */
+      get inputElement() {
+        return this._inputElement;
       }
 
       /**
@@ -323,17 +334,17 @@
 
           case 'name':
             // Update the form element's name.
-            this._formElement.name = newValue;
+            this._inputElement.name = newValue;
             break;
 
           case 'value':
             // Update the form element's value.
-            this._formElement.value = newValue;
+            this._inputElement.value = newValue;
             break;
 
           case 'form':
             // Update the form element's form.
-            this._formElement.for = newValue;
+            this._inputElement.for = newValue;
             break;
         }
       }
@@ -374,6 +385,8 @@
        * `_togglePressed()` calls the `pressed` setter and flips its state.
        * Because `_togglePressed()` is only caused by a user action, it will
        * also dispatch a change event.
+       *
+       * @fires change
        */
       _togglePressed() {
         // Don't do anything if disabled.
@@ -384,7 +397,12 @@
         // Change the value of pressed.
         this.pressed = !this.pressed;
 
-        // This method is only caused by user action so dispatch a change event.
+        /**
+         * Fire a change event.
+         *
+         * @event change
+         *   Fired when the component's `pressed` value changes due to user interaction.
+         */
         this.dispatchEvent(new CustomEvent('change', {
           detail: {
             pressed: this.pressed,
@@ -399,11 +417,6 @@
 
     // Define the element.
     window.customElements.define(elementTagName, CatalystToggleButton);
-  }
-
-  // Define `CatalystElements` if it's not already defined.
-  if (window.CatalystElements === undefined) {
-    window.CatalystElements = {};
   }
 
   // If the `CatalystToggleButton` hasn't already been defined, define it.

@@ -1,5 +1,7 @@
 (function() {
 
+  window.CatalystElements = window.CatalystElements || {};
+
   function createElement() {
 
     const elementTagName = 'catalyst-toggle-button';
@@ -28,10 +30,11 @@
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        this._formElement = document.createElement('input');
-        this._formElement.type = 'checkbox';
-        this._formElement.style.display = 'none';
-        this.appendChild(this._formElement);
+
+        this._inputElement = document.createElement('input');
+        this._inputElement.type = 'checkbox';
+        this._inputElement.style.display = 'none';
+        this.appendChild(this._inputElement);
       }
 
       connectedCallback() {
@@ -112,14 +115,14 @@
       }
 
       set form(value) {
-        this._formElement.form = value
-        if (this._formElement.hasAttribute('form')) {
-          this.setAttribute('form', this._formElement.getAttribute('form'));
+        this._inputElement.form = value
+        if (this._inputElement.hasAttribute('form')) {
+          this.setAttribute('form', this._inputElement.getAttribute('form'));
         }
       }
 
       get form() {
-        return this._formElement.form;
+        return this._inputElement.form;
       }
 
       set value(value) {
@@ -132,6 +135,10 @@
         } else {
           return 'on';
         }
+      }
+
+      get inputElement() {
+        return this._inputElement;
       }
 
       attributeChangedCallback(name, oldValue, newValue) {
@@ -158,15 +165,15 @@
             break;
 
           case 'name':
-            this._formElement.name = newValue;
+            this._inputElement.name = newValue;
             break;
 
           case 'value':
-            this._formElement.value = newValue;
+            this._inputElement.value = newValue;
             break;
 
           case 'form':
-            this._formElement.for = newValue;
+            this._inputElement.for = newValue;
             break;
         }
       }
@@ -211,10 +218,6 @@
     window.CatalystElements.CatalystToggleButton = CatalystToggleButton;
 
     window.customElements.define(elementTagName, CatalystToggleButton);
-  }
-
-  if (window.CatalystElements === undefined) {
-    window.CatalystElements = {};
   }
 
   if (window.CatalystElements.CatalystToggleButton === undefined) {

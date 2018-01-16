@@ -8,7 +8,7 @@ pages:
     - yarn
     - npm run analyze
     - npm run build-docs
-    - mv build/docs public
+    - mv docs public
   artifacts:
     paths:
       - public
