@@ -64,6 +64,7 @@
      * @class
      * @extends HTMLElement
      *
+     * @customElement
      * @group Catalyst Elements
      * @element catalyst-toggle-button
      * @demo demo/demo.es5.html ES5 Component Demo
