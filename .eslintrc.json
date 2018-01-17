@@ -16,5 +16,10 @@
     "assert": false,
     "fixture": false,
     "WCT": false
+  },
+  "rules": {
+    "quotes":  ["error", "single", {
+      "avoidEscape": true
+    }]
   }
 }
