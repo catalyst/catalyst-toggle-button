@@ -11,5 +11,5 @@ Feel free to submit any issues you find :)
 * Each pull request must be associated with at least one issue.
 * Check that all tests are passing.
 * Ensure your code is compliant with our code linters.
-* Run `npm run build` before submitting a request.
+* Run `yarn run build` before submitting a request.
 * [Submit a pull request](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github) with detailed title and description.
