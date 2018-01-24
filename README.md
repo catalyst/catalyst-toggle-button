@@ -22,35 +22,7 @@ Then simply use it like any other tag:
 
 ## Browser Compatibility
 
-**Not all browser have full support for web components yet.**
-
-[WebComponentsJS](https://github.com/webcomponents/webcomponentsjs) is a set of polyfills that help fill that gap with regard to JavaScript support.  
-[ShadyCSS](https://github.com/webcomponents/shadycss) is another polyfill that some browsers may need to help encapsulate CSS.
-
-Install these polyfills via npm:
-
-```sh
-npm install --save @webcomponents/webcomponentsjs @webcomponents/shadycss
-```
-
-Then include them on each page (before importing the component's definition):
-
-```html
-<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-<script src="node_modules/@webcomponents/shadycss/scoping-shim.min.js"></script>
-```
-
-### ES5 Support
-
-For older browser that don't support ES6 JavaScript, an ES5 transpiled versions is available (`*.es5.min.js`).
-
-To use this version, include it's script instead of the ES6 version and make sure each page that uses the component imports these scripts (before importing the component's definition):
-
-```html
-<script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
-<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-<script src="node_modules/@webcomponents/shadycss/scoping-shim.min.js"></script>
-```
+See details on the wiki: [Catalyst Elements - Browser Compatibility](https://wiki.wgtn.cat-it.co.nz/wiki/Catalyst_Elements#Browser_Compatibility)
 
 ## Contributions
 
@@ -65,7 +37,7 @@ Project dependencies are managed through [Yarn](https://yarnpkg.com/lang/en/docs
 Install dependencies with:
 
 ```sh
-yarn
+yarn install
 ```
 
 ## Building
@@ -84,7 +56,7 @@ Build script: `./gulpfile.js`
 Build with:
 
 ```sh
-npm run build
+yarn run build
 ```
 
 ## Coding Style
@@ -94,7 +66,7 @@ This project uses [ESLint](http://eslint.org/) to lint JavaScript and [Sass Lint
 To test if your code is compliant, run:
 
 ```sh
-npm run lint
+yarn run lint
 ```
 
 ## Docs
@@ -103,16 +75,16 @@ Docs are build with [Polymer](https://www.polymer-project.org/), the [Polymer Bu
 
 Docs will automatically be update on GitLab pages whenever a change is pushed to the master branch.
 
-To build the docs manually, first run the analyzer which will update `./analysis.json`. The docs are then built from this file.
+To build the docs locally, first run the analyzer which will update `./analysis.json`. The docs are then built from this file.
 
 ```sh
-npm run analyze
-npm run build-docs
+yarn run analyze
+yarn run build-docs
 ```
 
-The docs will be located under `./build/docs/`.
+The docs will be located under `./docs/`.
 
-In order to view the docs in a web browser, the files need to be served from a web server (they cannot be open using file:///).
+In order to view the docs in a web browser, the files need to be served from a web server (they cannot be open using the `file:///` protocall).
 
 ## Testing
 
@@ -121,7 +93,7 @@ Testing is done using the [web-component-tester](https://github.com/Polymer/web-
 ### Running Tests On The Command Line
 
 ```sh
-npm test
+yarn run test
 ```
 
 ### Running Tests In The Browser
