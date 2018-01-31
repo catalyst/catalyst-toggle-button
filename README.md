@@ -1,8 +1,8 @@
 # &lt;catalyst-toggle-button&gt;
 
-[Live Demo ↗](http://catalystelements.pages.gitlab.wgtn.cat-it.co.nz/catalyst-toggle-button/#/elements/catalyst-toggle-button/demos/es6-component-demo)
+[Live Demo ↗](http://catalystelements.pages.gitlab.wgtn.cat-it.co.nz/CatalystElements/#/elements/catalyst-toggle-button/demos/es6-component-demo)
 |
-[API documentation ↗](http://catalystelements.pages.gitlab.wgtn.cat-it.co.nz/catalyst-toggle-button/#/elements/catalyst-toggle-button)
+[API documentation ↗](http://catalystelements.pages.gitlab.wgtn.cat-it.co.nz/CatalystElements/#/elements/catalyst-toggle-button)
 
 `<catalyst-toggle-button>` is a web component toggle button, part of the `Catalyst Elements Collection`.
 

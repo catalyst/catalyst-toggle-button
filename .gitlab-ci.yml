@@ -1,22 +1,5 @@
 stages:
-  - pages
   - deploy
-
-update_docs:
-  stage: pages
-  image: node:8.9.3
-  script:
-    - yarn
-    - yarn run analyze
-    - yarn run build-docs
-    - mv docs public
-  artifacts:
-    paths:
-      - public
-  only:
-    - master
-  tags:
-    - docker
 
 update_catalyst_elements:
   stage: deploy
