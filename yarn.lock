@@ -199,7 +199,7 @@
   version "3.0.0-rc.1"
   resolved "https://codeload.github.com/PolymerElements/test-fixture/tar.gz/05caebd9ecbb464024455923bd351d2ba640932e"
 
-"@bower_components/web-component-tester@Polymer/web-component-tester#^6.4.1":
+"@bower_components/web-component-tester@Polymer/web-component-tester#^6.5.0":
   version "6.5.0"
   resolved "https://codeload.github.com/Polymer/web-component-tester/tar.gz/8b979f3475a7040242f7255872156f080cf373a8"
   dependencies:
@@ -3704,13 +3704,15 @@ growl@1.9.2:
   version "1.9.2"
   resolved "https://registry.yarnpkg.com/growl/-/growl-1.9.2.tgz#0ea7743715db8d8de2c5ede1775e1b45ac85c02f"
 
-gulp-clean@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/gulp-clean/-/gulp-clean-0.3.2.tgz#a347d473acea40182f935587a451941671928102"
+gulp-clean@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/gulp-clean/-/gulp-clean-0.4.0.tgz#3bc25e7084e641bbd7bde057cf90c01c50d95950"
   dependencies:
-    gulp-util "^2.2.14"
-    rimraf "^2.2.8"
-    through2 "^0.4.2"
+    fancy-log "^1.3.2"
+    plugin-error "^0.1.2"
+    rimraf "^2.6.2"
+    through2 "^2.0.3"
+    vinyl "^2.1.0"
 
 gulp-cli@^2.0.0:
   version "2.0.1"
@@ -3758,14 +3760,13 @@ gulp-html-extract@^0.3.0:
     gulp-util "2.2.14"
     through2 "0.4.1"
 
-gulp-htmlmin@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/gulp-htmlmin/-/gulp-htmlmin-3.0.0.tgz#19ea8002d1231d6b1f18a12d20f2a66a77770fb3"
+gulp-htmlmin@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/gulp-htmlmin/-/gulp-htmlmin-4.0.0.tgz#266feaed83588838aedda3666f67d057ec120313"
   dependencies:
     bufferstreams "^1.1.0"
-    gulp-util "^3.0.7"
     html-minifier "^3.0.3"
-    object-assign "^4.0.1"
+    plugin-error "^0.1.2"
     readable-stream "^2.0.2"
     tryit "^1.0.1"
 
@@ -3858,20 +3859,7 @@ gulp-util@2.2.14:
     through2 "~0.4.0"
     vinyl "~0.2.1"
 
-gulp-util@^2.2.14, gulp-util@~2.2.0:
-  version "2.2.20"
-  resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-2.2.20.tgz#d7146e5728910bd8f047a6b0b1e549bc22dbd64c"
-  dependencies:
-    chalk "^0.5.0"
-    dateformat "^1.0.7-1.2.3"
-    lodash._reinterpolate "^2.4.1"
-    lodash.template "^2.4.1"
-    minimist "^0.2.0"
-    multipipe "^0.1.0"
-    through2 "^0.5.0"
-    vinyl "^0.2.1"
-
-gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.6, gulp-util@^3.0.7:
+gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.6:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -3893,6 +3881,19 @@ gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.6, gulp-util@^3.0.7:
     replace-ext "0.0.1"
     through2 "^2.0.0"
     vinyl "^0.5.0"
+
+gulp-util@~2.2.0:
+  version "2.2.20"
+  resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-2.2.20.tgz#d7146e5728910bd8f047a6b0b1e549bc22dbd64c"
+  dependencies:
+    chalk "^0.5.0"
+    dateformat "^1.0.7-1.2.3"
+    lodash._reinterpolate "^2.4.1"
+    lodash.template "^2.4.1"
+    minimist "^0.2.0"
+    multipipe "^0.1.0"
+    through2 "^0.5.0"
+    vinyl "^0.2.1"
 
 gulp@3.9.1:
   version "3.9.1"
@@ -7263,7 +7264,7 @@ rgb@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/rgb/-/rgb-0.1.0.tgz#be27b291e8feffeac1bd99729721bfa40fc037b5"
 
-rimraf@2, rimraf@^2.2.8, rimraf@^2.5.1, rimraf@^2.5.4, rimraf@^2.6.1:
+rimraf@2, rimraf@^2.2.8, rimraf@^2.5.1, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   dependencies:
@@ -8161,7 +8162,7 @@ through2@0.4.1:
     readable-stream "~1.0.17"
     xtend "~2.1.1"
 
-through2@^0.4.1, through2@^0.4.2, through2@~0.4.0:
+through2@^0.4.1, through2@~0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/through2/-/through2-0.4.2.tgz#dbf5866031151ec8352bb6c4db64a2292a840b9b"
   dependencies:
@@ -8750,7 +8751,7 @@ wd@^1.2.0:
     underscore.string "3.3.4"
     vargs "0.1.0"
 
-web-component-tester@^6.4.1:
+web-component-tester@^6.5.0:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/web-component-tester/-/web-component-tester-6.5.0.tgz#3dbad2695f703b9325687f859582f57b59128ea2"
   dependencies:
