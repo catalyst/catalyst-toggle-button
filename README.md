@@ -1,3 +1,5 @@
+[![pipeline status](https://gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button/badges/master/pipeline.svg)](https://gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button/commits/master)
+
 # &lt;catalyst-toggle-button&gt;
 
 [Live Demo ↗](http://catalystelements.pages.gitlab.wgtn.cat-it.co.nz/CatalystElements/#/elements/catalyst-toggle-button/demos/es6-component-demo)
@@ -44,11 +46,10 @@ yarn install
 
 The build process will create the following versions of the component in the distribution folder (`./dist`):
 
-* an es6 version
-* an es6 minified version
-* an es5 minified version
-
-The partials (`./src/partials/`) will be inserted into the correct place within these versions.
+* an es6 module version
+* an es6 script version
+* an es6 minified script version
+* an es5 minified script version
 
 [Gulp](https://gulpjs.com/) is used to run the build process.  
 Build script: `./gulpfile.js`

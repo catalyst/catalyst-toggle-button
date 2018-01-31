@@ -1,5 +1,28 @@
 stages:
+  - test
   - deploy
+
+run_tests:
+  stage: test
+  image: gitlab.wgtn.cat-it.co.nz:4567/rebeccastevens/docker-wct-image
+  script:
+    - yarn install
+    - yarn run test
+  only:
+    - branches
+  tags:
+    - docker
+
+lint:
+  stage: test
+  image: node:8.9.3
+  script:
+    - yarn install
+    - yarn run lint
+  only:
+    - branches
+  tags:
+    - docker
 
 update_catalyst_elements:
   stage: deploy
