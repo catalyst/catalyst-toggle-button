@@ -2,7 +2,7 @@ stages:
   - test
   - deploy
 
-run_tests:
+test_element:
   stage: test
   image: gitlab.wgtn.cat-it.co.nz:4567/rebeccastevens/docker-wct-image
   script:
@@ -24,7 +24,7 @@ lint:
   tags:
     - docker
 
-update_catalyst_elements:
+update_bundle:
   stage: deploy
   script:
     - VERSION_REGEX='^v?([0-9]+\.)?([0-9]+\.)?([0-9]+)$'
