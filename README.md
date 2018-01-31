@@ -10,7 +10,13 @@
 
 `<catalyst-toggle-button>` is a web component toggle button, part of the `Catalyst Elements Collection`.
 
-## Getting Started
+## Installation
+
+```sh
+npm install --save "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git"
+```
+
+## Usage
 
 Import the component's definition on each page it is to be used on:
 
