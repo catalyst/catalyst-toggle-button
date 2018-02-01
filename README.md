@@ -62,6 +62,8 @@ Contributions are most welcome.
 
 Please read our [contribution guidelines](./CONTRIBUTING.md).
 
+## Development
+
 ### Dependencies
 
 Project dependencies are managed through [Yarn](https://yarnpkg.com/lang/en/docs/install/) (not npm directly).
