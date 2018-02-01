@@ -405,10 +405,9 @@
         this.pressed = !this.pressed;
 
         /**
-         * Fire a change event.
+         * Fired when the component's `pressed` value changes due to user interaction.
          *
          * @event change
-         *   Fired when the component's `pressed` value changes due to user interaction.
          */
         this.dispatchEvent(new CustomEvent('change', {
           detail: {
