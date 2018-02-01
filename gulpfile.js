@@ -122,6 +122,9 @@ export { ${className} };
 ${content}
     // Make the class globally accessible under the \`CatalystElements\` object.
     window.CatalystElements.${className} = ${className};
+
+    // Register the element.
+    ${className}.register();
   }
 
   // If the \`${className}\` hasn't already been defined, define it.
