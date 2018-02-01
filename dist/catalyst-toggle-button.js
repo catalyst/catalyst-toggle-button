@@ -10,35 +10,7 @@
    * Create the custom element
    */
   function createElement() {
-    /**
-     * @constant {string}
-     *   The name of the element tag.
-     */
-    const elementTagName = 'catalyst-toggle-button';
-
-    /**
-     * Key codes.
-     *
-     * @readonly
-     * @enum {number}
-     */
-    const KEYCODE = {
-      SPACE: 32,
-      ENTER: 13
-    };
-
-    /**
-     * @constant {HTMLTemplateElement}
-     *   The template of the component.
-     */
-    const template = document.createElement('template');
-    template.innerHTML = `<style>:host{display:inline-block;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;padding:2px 7px;margin:0;font:400 13.3333px Arial;letter-spacing:normal;word-spacing:normal;color:#000;text-align:center;text-indent:0;text-rendering:auto;text-shadow:none;text-transform:none;cursor:default;background-color:#ddd;border:2px outset #ddd;-o-border-image:none;border-image:none;-o-border-image:initial;border-image:initial;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-appearance:button;-moz-appearance:button}:host([pressed]){padding:2px 6px 2px 8px;color:#000;text-shadow:.5px .5px 1px #f0f0f0;background-color:#bbb;border-color:#aaa;border-style:inset}:host([hidden]){display:none}</style><slot></slot>`;  // eslint-disable-line quotes
-
-    // If using ShadyCSS.
-    if (window.ShadyCSS !== undefined) {
-      // Rename classes as needed to ensure style scoping.
-      window.ShadyCSS.prepareTemplate(template, elementTagName);
-    }
+    /* exported CatalystToggleButton */
 
     /**
      * `<catalyst-toggle-button>` is a toggle button web component.
@@ -70,6 +42,49 @@
     class CatalystToggleButton extends HTMLElement {
 
       /**
+       * @constant {String}
+       *   The element's tag name.
+       */
+      static get is() {
+        return 'catalyst-toggle-button';
+      }
+
+      /**
+       * @constant {HTMLTemplateElement}
+       *   The template of the component.
+       */
+      static get _template() {
+        if (this.__template === undefined) {
+          this.__template = document.createElement('template');
+          this.__template.innerHTML = `<style>:host{display:inline-block;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;padding:2px 7px;margin:0;font:400 13.3333px Arial;letter-spacing:normal;word-spacing:normal;color:#000;text-align:center;text-indent:0;text-rendering:auto;text-shadow:none;text-transform:none;cursor:default;background-color:#ddd;border:2px outset #ddd;-o-border-image:none;border-image:none;-o-border-image:initial;border-image:initial;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-appearance:button;-moz-appearance:button}:host([pressed]){padding:2px 6px 2px 8px;color:#000;text-shadow:.5px .5px 1px #f0f0f0;background-color:#bbb;border-color:#aaa;border-style:inset}:host([hidden]){display:none}</style><slot></slot>`;  // eslint-disable-line quotes
+
+          // If using ShadyCSS.
+          if (window.ShadyCSS !== undefined) {
+            // Rename classes as needed to ensure style scoping.
+            window.ShadyCSS.prepareTemplate(this.__template, CatalystToggleButton.is);
+          }
+        }
+
+        return this.__template;
+      }
+
+      /**
+       * Key codes.
+       *
+       * @enum {number}
+       */
+      static get _KEYCODE() {
+        if (this.__keycode === undefined) {
+          this.__keycode = {
+            SPACE: 32,
+            ENTER: 13
+          }
+        }
+
+        return this.__keycode;
+      }
+
+      /**
        * The attributes on this element to observe.
        *
        * @returns {Array.<string>}
@@ -80,6 +95,13 @@
       }
 
       /**
+       * Register this class as an element.
+       */
+      static register() {
+        window.customElements.define(CatalystToggleButton.is, CatalystToggleButton);
+      }
+
+      /**
        * Construct the element.
        */
       constructor() {
@@ -87,7 +109,7 @@
 
         // Create a shadow root and stamp out the template's content inside.
         this.attachShadow({mode: 'open'});
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
+        this.shadowRoot.appendChild(CatalystToggleButton._template.content.cloneNode(true));
 
         // The input element needs to be in the lightDom to work with form elements.
 
@@ -347,8 +369,8 @@
 
         // What key was pressed?
         switch (event.keyCode) {
-          case KEYCODE.SPACE:
-          case KEYCODE.ENTER:
+          case CatalystToggleButton._KEYCODE.SPACE:
+          case CatalystToggleButton._KEYCODE.ENTER:
             event.preventDefault();
             this._togglePressed();
             break;
@@ -397,11 +419,11 @@
       }
     }
 
-    // Define the element.
-    window.customElements.define(elementTagName, CatalystToggleButton);
-
     // Make the class globally accessible under the `CatalystElements` object.
     window.CatalystElements.CatalystToggleButton = CatalystToggleButton;
+
+    // Register the element.
+    CatalystToggleButton.register();
   }
 
   // If the `CatalystToggleButton` hasn't already been defined, define it.
