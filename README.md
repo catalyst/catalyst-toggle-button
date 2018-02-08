@@ -21,7 +21,7 @@ npm install --save "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/ca
 Import the component's definition on each page it is to be used on:
 
 ```html
-<script src="dist/catalyst-toggle-button.js"></script>
+<script src="node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.js"></script>
 ```
 
 Then simply use it like any other tag:
@@ -37,7 +37,7 @@ Import the module on each page that uses the component, then register the elemen
 ```html
 <script type="module">
   // Import the component.
-  import { CatalystToggleButton } from 'dist/catalyst-toggle-button.module.js';
+  import { CatalystToggleButton } from 'node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.module.js';
 
   // If not using web component polyfills or if polyfills are ready, register the elements.
   if (window.WebComponents === undefined || window.WebComponents.ready) {
