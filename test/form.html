@@ -57,6 +57,7 @@
             expect(element.hasAttribute('name')).to.be.true;
             expect(element.getAttribute('name')).to.equal('foo');
             expect(element).to.have.property('name', 'foo');
+            expect(element.inputElement).to.have.property('name', 'foo');
           });
 
           /**
@@ -64,6 +65,7 @@
            */
           test('value', () => {
             expect(element).to.have.property('value', 'bar');
+            expect(element.inputElement).to.have.property('value', 'bar');
           });
 
           /**
@@ -71,6 +73,7 @@
            */
           test('form', () => {
             expect(element).to.have.property('form', form);
+            expect(element.inputElement).to.have.property('form', form);
           });
         });
 
