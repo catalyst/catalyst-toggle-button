@@ -126,18 +126,16 @@ class CatalystToggleButton extends HTMLElement {
     this._upgradeProperty('pressed');
     this._upgradeProperty('disabled');
 
-    // Set this element's role, tab index and aria attributes if they are not already set.
+    // Set the aria attributes.
+    this.setAttribute('aria-pressed', this.pressed);
+    this.setAttribute('aria-disabled', this.disabled);
+
+    // Set this element's role and tab index if they are not already set.
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'button');
     }
     if (!this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', 0);
-    }
-    if (!this.hasAttribute('aria-pressed')) {
-      this.setAttribute('aria-pressed', this.pressed);
-    }
-    if (!this.hasAttribute('aria-disabled')) {
-      this.setAttribute('aria-disabled', this.disabled);
     }
 
     // Add the element's event listeners.
@@ -300,19 +298,27 @@ class CatalystToggleButton extends HTMLElement {
    *   The new value of the attribute that changed.
    */
   attributeChangedCallback(name, oldValue, newValue) {
-    const hasValue = newValue !== null;
+    let boolVal = Boolean(newValue);
+
     switch (name) {
       case 'pressed':
         // Set the aria value.
-        this.setAttribute('aria-pressed', hasValue);
+        this.setAttribute('aria-pressed', boolVal);
+
+        if (boolVal) {
+          this.inputElement.setAttribute('checked', '');
+        } else {
+          this.inputElement.removeAttribute('checked');
+        }
         break;
 
       case 'disabled':
         // Set the aria value.
-        this.setAttribute('aria-disabled', hasValue);
+        this.setAttribute('aria-disabled', boolVal);
 
-        // Add/Remove the tabindex attribute based `hasValue`.
-        if (hasValue) {
+        if (boolVal) {
+          this.inputElement.setAttribute('disabled', '');
+
           // If the tab index is set.
           if (this.hasAttribute('tabindex')) {
             this._tabindexBeforeDisabled = this.getAttribute('tabindex');
@@ -320,6 +326,8 @@ class CatalystToggleButton extends HTMLElement {
             this.blur();
           }
         } else {
+          this.inputElement.removeAttribute('disabled');
+
           // If the tab index isn't already set and the previous value is known.
           if (!this.hasAttribute('tabindex') && this._tabindexBeforeDisabled !== undefined && this._tabindexBeforeDisabled !== null) {
             this.setAttribute('tabindex', this._tabindexBeforeDisabled);
@@ -327,18 +335,20 @@ class CatalystToggleButton extends HTMLElement {
         }
         break;
 
+
+
       case 'name':
-        // Update the form element's name.
-        this._inputElement.name = newValue;
+        // Update the input element's name.
+        this.inputElement.setAttribute('name', new String(newValue));
         break;
 
       case 'value':
-        // Update the form element's value.
-        this._inputElement.value = newValue;
+      // Update the input element's value.
+        this.inputElement.setAttribute('value', new String(newValue));
         break;
 
       case 'form':
-        // Update the form element's form.
+        // Update the input element's form.
         this._inputElement.setAttribute('form', newValue);
         break;
     }
