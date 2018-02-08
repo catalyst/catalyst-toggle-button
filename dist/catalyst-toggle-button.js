@@ -91,7 +91,7 @@
        *   The attributes this element is observing for changes.
        */
       static get observedAttributes() {
-        return ['pressed', 'disabled', 'name', 'value', 'form'];
+        return ['pressed', 'disabled', 'required', 'name', 'value', 'form'];
       }
 
       /**
@@ -137,10 +137,12 @@
         // Upgrade the element's properties.
         this._upgradeProperty('pressed');
         this._upgradeProperty('disabled');
+        this._upgradeProperty('required');
 
         // Set the aria attributes.
         this.setAttribute('aria-pressed', this.pressed);
         this.setAttribute('aria-disabled', this.disabled);
+        this.setAttribute('aria-required', this.required);
 
         // Set this element's role and tab index if they are not already set.
         if (!this.hasAttribute('role')) {
@@ -233,6 +235,32 @@
        */
       get disabled() {
         return this.hasAttribute('disabled');
+      }
+
+      /**
+       * Setter for `required`.
+       *
+       * @param {boolean} value
+       *   If truthy, `required` will be set to true, otherwise `required` will be set to false.
+       */
+      set required(value) {
+        const isRequired = Boolean(value);
+        if (isRequired) {
+          this.setAttribute('required', '');
+        }
+        else {
+          this.removeAttribute('required');
+        }
+      }
+
+      /**
+       * States whether or not this element is required.
+       *
+       * @default false
+       * @returns {boolean}
+       */
+      get required() {
+        return this.hasAttribute('required');
       }
 
       /**
@@ -347,7 +375,17 @@
             }
             break;
 
+          case 'required':
+            // Set the aria attribue.
+            this.setAttribute('aria-required', boolVal);
 
+            if (boolVal) {
+              this.inputElement.setAttribute('required', '');
+            }
+            else {
+              this.inputElement.removeAttribute('required');
+            }
+            break;
 
           case 'name':
             // Update the input element's name.
