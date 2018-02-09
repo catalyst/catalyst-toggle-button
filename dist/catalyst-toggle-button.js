@@ -10,8 +10,20 @@
    * Create the custom element
    */
   function createElement() {
-    /* exported CatalystToggleButton */
-
+/**
+     * Get the template for this element.
+     */
+        function getTemplate() {
+      let template = document.createElement('template');
+      template.innerHTML = `<style>:host{display:inline-block;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;padding:2px 7px;margin:0;font:400 13.3333px Arial;letter-spacing:normal;word-spacing:normal;color:#000;text-align:center;text-indent:0;text-rendering:auto;text-shadow:none;text-transform:none;cursor:default;background-color:#ddd;border:2px outset #ddd;-o-border-image:none;border-image:none;-o-border-image:initial;border-image:initial;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-appearance:button;-moz-appearance:button}:host([pressed]){padding:2px 6px 2px 8px;color:#000;text-shadow:.5px .5px 1px #f0f0f0;background-color:#bbb;border-color:#aaa;border-style:inset}:host([hidden]){display:none}</style><slot></slot>`;
+      // eslint-disable-line quotes
+      // If using ShadyCSS.
+      if (window.ShadyCSS !== undefined) {
+        // Rename classes as needed to ensure style scoping.
+        window.ShadyCSS.prepareTemplate(template, CatalystToggleButton.is);
+      }
+      return template;
+    }
     /**
      * `<catalyst-toggle-button>` is a toggle button web component.
      *
@@ -40,7 +52,6 @@
      * @demo demo/demo.es6.html ES6 Component Demo
      */
     class CatalystToggleButton extends HTMLElement {
-
       /**
        * @constant {String}
        *   The element's tag name.
@@ -48,26 +59,6 @@
       static get is() {
         return 'catalyst-toggle-button';
       }
-
-      /**
-       * @constant {HTMLTemplateElement}
-       *   The template of the component.
-       */
-      static get _template() {
-        if (this.__template === undefined) {
-          this.__template = document.createElement('template');
-          this.__template.innerHTML = `<style>:host{display:inline-block;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;padding:2px 7px;margin:0;font:400 13.3333px Arial;letter-spacing:normal;word-spacing:normal;color:#000;text-align:center;text-indent:0;text-rendering:auto;text-shadow:none;text-transform:none;cursor:default;background-color:#ddd;border:2px outset #ddd;-o-border-image:none;border-image:none;-o-border-image:initial;border-image:initial;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-appearance:button;-moz-appearance:button}:host([pressed]){padding:2px 6px 2px 8px;color:#000;text-shadow:.5px .5px 1px #f0f0f0;background-color:#bbb;border-color:#aaa;border-style:inset}:host([hidden]){display:none}</style><slot></slot>`;  // eslint-disable-line quotes
-
-          // If using ShadyCSS.
-          if (window.ShadyCSS !== undefined) {
-            // Rename classes as needed to ensure style scoping.
-            window.ShadyCSS.prepareTemplate(this.__template, CatalystToggleButton.is);
-          }
-        }
-
-        return this.__template;
-      }
-
       /**
        * Key codes.
        *
@@ -78,12 +69,10 @@
           this.__keycode = {
             SPACE: 32,
             ENTER: 13
-          }
+          };
         }
-
         return this.__keycode;
       }
-
       /**
        * The attributes on this element to observe.
        *
@@ -91,28 +80,34 @@
        *   The attributes this element is observing for changes.
        */
       static get observedAttributes() {
-        return ['pressed', 'disabled', 'required', 'name', 'value', 'form'];
+        return [
+          'checked',
+          'pressed',
+          'disabled',
+          'required',
+          'name',
+          'value',
+          'form'
+        ];
       }
-
       /**
        * Register this class as an element.
        */
       static register() {
         window.customElements.define(CatalystToggleButton.is, CatalystToggleButton);
       }
-
       /**
        * Construct the element.
+       *
+       * @param {HTMLTemplate} [template]
+       *   The template to use.
        */
-      constructor() {
+      constructor(template = getTemplate()) {
         super();
-
         // Create a shadow root and stamp out the template's content inside.
-        this.attachShadow({mode: 'open'});
-        this.shadowRoot.appendChild(CatalystToggleButton._template.content.cloneNode(true));
-
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
         // The input element needs to be in the lightDom to work with form elements.
-
         /**
          * The element that will be submitting as part of a form to represent this component.
          *
@@ -123,7 +118,6 @@
         this._inputElement.style.display = 'none';
         this.appendChild(this._inputElement);
       }
-
       /**
        * Fires when the element is inserted into the DOM.
        */
@@ -133,30 +127,28 @@
           // Style the element.
           window.ShadyCSS.styleElement(this);
         }
-
         // Upgrade the element's properties.
+        this._upgradeProperty('checked');
         this._upgradeProperty('pressed');
         this._upgradeProperty('disabled');
         this._upgradeProperty('required');
-
         // Set the aria attributes.
-        this.setAttribute('aria-pressed', this.pressed);
         this.setAttribute('aria-disabled', this.disabled);
         this.setAttribute('aria-required', this.required);
-
         // Set this element's role and tab index if they are not already set.
         if (!this.hasAttribute('role')) {
           this.setAttribute('role', 'button');
+          this.setAttribute('aria-pressed', this.checked);
+        } else if (this.getAttribute('role') !== 'button') {
+          this.setAttribute('aria-checked', this.checked);
         }
         if (!this.hasAttribute('tabindex')) {
           this.setAttribute('tabindex', 0);
         }
-
         // Add the element's event listeners.
         this.addEventListener('keydown', this._onKeyDown);
         this.addEventListener('click', this._onClick);
       }
-
       /**
        * Upgrade the property on this element with the given name.
        *
@@ -177,7 +169,6 @@
           this[prop] = value;
         }
       }
-
       /**
        * Fires when the element is removed from the DOM.
        */
@@ -185,7 +176,29 @@
         this.removeEventListener('keydown', this._onKeyDown);
         this.removeEventListener('click', this._onClick);
       }
-
+      /**
+       * Setter for `checked`.
+       *
+       * @param {boolean} value
+       *   If truthy, `checked` will be set to true, otherwise `checked` will be set to false.
+       */
+      set checked(value) {
+        const isChecked = Boolean(value);
+        if (isChecked) {
+          this.setAttribute('checked', '');
+        } else {
+          this.removeAttribute('checked');
+        }
+      }
+      /**
+       * States whether or not this element is checked.
+       *
+       * @default false
+       * @returns {boolean}
+       */
+      get checked() {
+        return this.hasAttribute('checked');
+      }
       /**
        * Setter for `pressed`.
        *
@@ -200,7 +213,6 @@
           this.removeAttribute('pressed');
         }
       }
-
       /**
        * States whether or not this element is pressed.
        *
@@ -210,7 +222,6 @@
       get pressed() {
         return this.hasAttribute('pressed');
       }
-
       /**
        * Setter for `disabled`.
        *
@@ -221,12 +232,10 @@
         const isDisabled = Boolean(value);
         if (isDisabled) {
           this.setAttribute('disabled', '');
-        }
-        else {
+        } else {
           this.removeAttribute('disabled');
         }
       }
-
       /**
        * States whether or not this element is disabled.
        *
@@ -236,7 +245,6 @@
       get disabled() {
         return this.hasAttribute('disabled');
       }
-
       /**
        * Setter for `required`.
        *
@@ -247,12 +255,10 @@
         const isRequired = Boolean(value);
         if (isRequired) {
           this.setAttribute('required', '');
-        }
-        else {
+        } else {
           this.removeAttribute('required');
         }
       }
-
       /**
        * States whether or not this element is required.
        *
@@ -262,7 +268,6 @@
       get required() {
         return this.hasAttribute('required');
       }
-
       /**
        * Setter for `name`.
        *
@@ -272,7 +277,6 @@
       set name(value) {
         this.setAttribute('name', new String(value));
       }
-
       /**
        * The name of this element. Used for forms.
        *
@@ -285,7 +289,6 @@
           return '';
         }
       }
-
       /**
        * The form this element is apart of.
        *
@@ -294,7 +297,6 @@
       get form() {
         return this._inputElement.form;
       }
-
       /**
        * Setter for `value`.
        *
@@ -304,7 +306,6 @@
       set value(value) {
         this.setAttribute('value', new String(value));
       }
-
       /**
        * The value this element has. Used for forms.
        *
@@ -317,7 +318,6 @@
           return 'on';
         }
       }
-
       /**
        * The input element.
        *
@@ -326,7 +326,6 @@
       get inputElement() {
         return this._inputElement;
       }
-
       /**
        * Fired when any of the attributes in the `observedAttributes` array change.
        *
@@ -338,72 +337,64 @@
        *   The new value of the attribute that changed.
        */
       attributeChangedCallback(name, oldValue, newValue) {
-        let boolVal = Boolean(newValue);
-
+        let hasValue = newValue !== null;
         switch (name) {
-          case 'pressed':
-            // Set the aria value.
-            this.setAttribute('aria-pressed', boolVal);
-
-            if (boolVal) {
-              this.inputElement.setAttribute('checked', '');
-            } else {
-              this.inputElement.removeAttribute('checked');
+        case 'checked':
+        case 'pressed':
+          // Set the aria value.
+          if (this.getAttribute('role') === 'button') {
+            this.setAttribute('aria-pressed', hasValue);
+          } else {
+            this.setAttribute('aria-checked', hasValue);
+          }
+          if (hasValue) {
+            this.inputElement.setAttribute('checked', '');
+          } else {
+            this.inputElement.removeAttribute('checked');
+          }
+          break;
+        case 'disabled':
+          // Set the aria value.
+          this.setAttribute('aria-disabled', hasValue);
+          if (hasValue) {
+            this.inputElement.setAttribute('disabled', '');
+            // If the tab index is set.
+            if (this.hasAttribute('tabindex')) {
+              this._tabindexBeforeDisabled = this.getAttribute('tabindex');
+              this.removeAttribute('tabindex');
+              this.blur();
             }
-            break;
-
-          case 'disabled':
-            // Set the aria value.
-            this.setAttribute('aria-disabled', boolVal);
-
-            if (boolVal) {
-              this.inputElement.setAttribute('disabled', '');
-
-              // If the tab index is set.
-              if (this.hasAttribute('tabindex')) {
-                this._tabindexBeforeDisabled = this.getAttribute('tabindex');
-                this.removeAttribute('tabindex');
-                this.blur();
-              }
-            } else {
-              this.inputElement.removeAttribute('disabled');
-
-              // If the tab index isn't already set and the previous value is known.
-              if (!this.hasAttribute('tabindex') && this._tabindexBeforeDisabled !== undefined && this._tabindexBeforeDisabled !== null) {
-                this.setAttribute('tabindex', this._tabindexBeforeDisabled);
-              }
+          } else {
+            this.inputElement.removeAttribute('disabled');
+            // If the tab index isn't already set and the previous value is known.
+            if (!this.hasAttribute('tabindex') && this._tabindexBeforeDisabled !== undefined && this._tabindexBeforeDisabled !== null) {
+              this.setAttribute('tabindex', this._tabindexBeforeDisabled);
             }
-            break;
-
-          case 'required':
-            // Set the aria attribue.
-            this.setAttribute('aria-required', boolVal);
-
-            if (boolVal) {
-              this.inputElement.setAttribute('required', '');
-            }
-            else {
-              this.inputElement.removeAttribute('required');
-            }
-            break;
-
-          case 'name':
-            // Update the input element's name.
-            this.inputElement.setAttribute('name', new String(newValue));
-            break;
-
-          case 'value':
+          }
+          break;
+        case 'required':
+          // Set the aria attribue.
+          this.setAttribute('aria-required', hasValue);
+          if (hasValue) {
+            this.inputElement.setAttribute('required', '');
+          } else {
+            this.inputElement.removeAttribute('required');
+          }
+          break;
+        case 'name':
+          // Update the input element's name.
+          this.inputElement.setAttribute('name', new String(newValue));
+          break;
+        case 'value':
           // Update the input element's value.
-            this.inputElement.setAttribute('value', new String(newValue));
-            break;
-
-          case 'form':
-            // Update the input element's form.
-            this._inputElement.setAttribute('form', newValue);
-            break;
+          this.inputElement.setAttribute('value', new String(newValue));
+          break;
+        case 'form':
+          // Update the input element's form.
+          this._inputElement.setAttribute('form', newValue);
+          break;
         }
       }
-
       /**
        * Called when a key is pressed on this element.
        *
@@ -414,58 +405,58 @@
         if (event.altKey) {
           return;
         }
-
         // What key was pressed?
         switch (event.keyCode) {
-          case CatalystToggleButton._KEYCODE.SPACE:
-          case CatalystToggleButton._KEYCODE.ENTER:
-            event.preventDefault();
-            this._togglePressed();
-            break;
-
-          // Any other key press is ignored and passed back to the browser.
-          default:
-            return;
+        case CatalystToggleButton._KEYCODE.SPACE:
+        case CatalystToggleButton._KEYCODE.ENTER:
+          event.preventDefault();
+          this._toggleChecked();
+          break;
+        // Any other key press is ignored and passed back to the browser.
+        default:
+          return;
         }
       }
-
       /**
        * Called when this element is clicked.
        */
       _onClick() {
-        this._togglePressed();
+        this._toggleChecked();
       }
-
       /**
-       * `_togglePressed()` calls the `pressed` setter and flips its state.
-       * Because `_togglePressed()` is only caused by a user action, it will
+       * `_toggleChecked()` calls the either the `checked` or `pressed` setter and flips its state.
+       * Because `_toggleChecked()` is only caused by a user action, it will
        * also dispatch a change event.
        *
        * @fires change
        */
-      _togglePressed() {
+      _toggleChecked() {
         // Don't do anything if disabled.
         if (this.disabled) {
           return;
         }
-
-        // Change the value of pressed.
-        this.pressed = !this.pressed;
-
+        // The key used in the event.
+        let eventDetailKey;
+        if (this.getAttribute('role') === 'button') {
+          // Change the value of pressed.
+          this.pressed = !this.pressed;
+          eventDetailKey = 'pressed';
+        } else {
+          // Change the value of checked.
+          this.checked = !this.checked;
+          eventDetailKey = 'checked';
+        }
         /**
          * Fired when the component's `pressed` value changes due to user interaction.
          *
          * @event change
          */
         this.dispatchEvent(new CustomEvent('change', {
-          detail: {
-            pressed: this.pressed,
-          },
-          bubbles: true,
+          detail: { [eventDetailKey]: this.checked },
+          bubbles: true
         }));
       }
     }
-
     // Make the class globally accessible under the `CatalystElements` object.
     window.CatalystElements.CatalystToggleButton = CatalystToggleButton;
 

@@ -1,4 +1,18 @@
-/* exported CatalystToggleButton */
+/**
+ * Get the template for this element.
+ */
+function getTemplate() {
+  let template = document.createElement('template');
+  template.innerHTML = `<style>[[inject:style]][[endinject]]</style>[[inject:template]][[endinject]]`;  // eslint-disable-line quotes
+
+  // If using ShadyCSS.
+  if (window.ShadyCSS !== undefined) {
+    // Rename classes as needed to ensure style scoping.
+    window.ShadyCSS.prepareTemplate(template, CatalystToggleButton.is);
+  }
+
+  return template;
+}
 
 /**
  * `<catalyst-toggle-button>` is a toggle button web component.
@@ -38,25 +52,6 @@ class CatalystToggleButton extends HTMLElement {
   }
 
   /**
-   * @constant {HTMLTemplateElement}
-   *   The template of the component.
-   */
-  static get _template() {
-    if (this.__template === undefined) {
-      this.__template = document.createElement('template');
-      this.__template.innerHTML = `<style>[[inject:style]][[endinject]]</style>[[inject:template]][[endinject]]`;  // eslint-disable-line quotes
-
-      // If using ShadyCSS.
-      if (window.ShadyCSS !== undefined) {
-        // Rename classes as needed to ensure style scoping.
-        window.ShadyCSS.prepareTemplate(this.__template, CatalystToggleButton.is);
-      }
-    }
-
-    return this.__template;
-  }
-
-  /**
    * Key codes.
    *
    * @enum {number}
@@ -79,7 +74,7 @@ class CatalystToggleButton extends HTMLElement {
    *   The attributes this element is observing for changes.
    */
   static get observedAttributes() {
-    return ['pressed', 'disabled', 'required', 'name', 'value', 'form'];
+    return ['checked', 'pressed', 'disabled', 'required', 'name', 'value', 'form'];
   }
 
   /**
@@ -91,13 +86,16 @@ class CatalystToggleButton extends HTMLElement {
 
   /**
    * Construct the element.
+   *
+   * @param {HTMLTemplate} [template]
+   *   The template to use.
    */
-  constructor() {
+  constructor(template = getTemplate()) {
     super();
 
     // Create a shadow root and stamp out the template's content inside.
     this.attachShadow({mode: 'open'});
-    this.shadowRoot.appendChild(CatalystToggleButton._template.content.cloneNode(true));
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
 
     // The input element needs to be in the lightDom to work with form elements.
 
@@ -123,18 +121,21 @@ class CatalystToggleButton extends HTMLElement {
     }
 
     // Upgrade the element's properties.
+    this._upgradeProperty('checked');
     this._upgradeProperty('pressed');
     this._upgradeProperty('disabled');
     this._upgradeProperty('required');
 
     // Set the aria attributes.
-    this.setAttribute('aria-pressed', this.pressed);
     this.setAttribute('aria-disabled', this.disabled);
     this.setAttribute('aria-required', this.required);
 
     // Set this element's role and tab index if they are not already set.
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'button');
+      this.setAttribute('aria-pressed', this.checked);
+    } else if (this.getAttribute('role') !== 'button') {
+      this.setAttribute('aria-checked', this.checked);
     }
     if (!this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', 0);
@@ -172,6 +173,31 @@ class CatalystToggleButton extends HTMLElement {
   disconnectedCallback() {
     this.removeEventListener('keydown', this._onKeyDown);
     this.removeEventListener('click', this._onClick);
+  }
+
+  /**
+   * Setter for `checked`.
+   *
+   * @param {boolean} value
+   *   If truthy, `checked` will be set to true, otherwise `checked` will be set to false.
+   */
+  set checked(value) {
+    const isChecked = Boolean(value);
+    if (isChecked) {
+      this.setAttribute('checked', '');
+    } else {
+      this.removeAttribute('checked');
+    }
+  }
+
+  /**
+   * States whether or not this element is checked.
+   *
+   * @default false
+   * @returns {boolean}
+   */
+  get checked() {
+    return this.hasAttribute('checked');
   }
 
   /**
@@ -326,14 +352,19 @@ class CatalystToggleButton extends HTMLElement {
    *   The new value of the attribute that changed.
    */
   attributeChangedCallback(name, oldValue, newValue) {
-    let boolVal = Boolean(newValue);
+    let hasValue = newValue !== null;
 
     switch (name) {
+      case 'checked':
       case 'pressed':
         // Set the aria value.
-        this.setAttribute('aria-pressed', boolVal);
+        if (this.getAttribute('role') === 'button') {
+          this.setAttribute('aria-pressed', hasValue);
+        } else {
+          this.setAttribute('aria-checked', hasValue);
+        }
 
-        if (boolVal) {
+        if (hasValue) {
           this.inputElement.setAttribute('checked', '');
         } else {
           this.inputElement.removeAttribute('checked');
@@ -342,9 +373,9 @@ class CatalystToggleButton extends HTMLElement {
 
       case 'disabled':
         // Set the aria value.
-        this.setAttribute('aria-disabled', boolVal);
+        this.setAttribute('aria-disabled', hasValue);
 
-        if (boolVal) {
+        if (hasValue) {
           this.inputElement.setAttribute('disabled', '');
 
           // If the tab index is set.
@@ -365,9 +396,9 @@ class CatalystToggleButton extends HTMLElement {
 
       case 'required':
         // Set the aria attribue.
-        this.setAttribute('aria-required', boolVal);
+        this.setAttribute('aria-required', hasValue);
 
-        if (boolVal) {
+        if (hasValue) {
           this.inputElement.setAttribute('required', '');
         }
         else {
@@ -408,7 +439,7 @@ class CatalystToggleButton extends HTMLElement {
       case CatalystToggleButton._KEYCODE.SPACE:
       case CatalystToggleButton._KEYCODE.ENTER:
         event.preventDefault();
-        this._togglePressed();
+        this._toggleChecked();
         break;
 
       // Any other key press is ignored and passed back to the browser.
@@ -421,24 +452,34 @@ class CatalystToggleButton extends HTMLElement {
    * Called when this element is clicked.
    */
   _onClick() {
-    this._togglePressed();
+    this._toggleChecked();
   }
 
   /**
-   * `_togglePressed()` calls the `pressed` setter and flips its state.
-   * Because `_togglePressed()` is only caused by a user action, it will
+   * `_toggleChecked()` calls the either the `checked` or `pressed` setter and flips its state.
+   * Because `_toggleChecked()` is only caused by a user action, it will
    * also dispatch a change event.
    *
    * @fires change
    */
-  _togglePressed() {
+  _toggleChecked() {
     // Don't do anything if disabled.
     if (this.disabled) {
       return;
     }
 
-    // Change the value of pressed.
-    this.pressed = !this.pressed;
+    // The key used in the event.
+    let eventDetailKey;
+
+    if (this.getAttribute('role') === 'button') {
+      // Change the value of pressed.
+      this.pressed = !this.pressed;
+      eventDetailKey = 'pressed';
+    } else {
+      // Change the value of checked.
+      this.checked = !this.checked;
+      eventDetailKey = 'checked';
+    }
 
     /**
      * Fired when the component's `pressed` value changes due to user interaction.
@@ -447,9 +488,12 @@ class CatalystToggleButton extends HTMLElement {
      */
     this.dispatchEvent(new CustomEvent('change', {
       detail: {
-        pressed: this.pressed,
+        [eventDetailKey]: this.checked,
       },
       bubbles: true,
     }));
   }
 }
+
+// Export the element.
+export { CatalystToggleButton };
