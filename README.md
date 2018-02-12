@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](LICENSE)
 [![Not published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-unpublished-red.svg)](https://gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button)
 
-[Live Demo ↗](http://catalystelements.pages.gitlab.wgtn.cat-it.co.nz/CatalystElements/#/elements/catalyst-toggle-button/demos/es6-component-demo)
+[Live Demo ↗](http://catalystelements.pages.gitlab.wgtn.cat-it.co.nz/CatalystElements/#/elements/catalyst-toggle-button/demos/basic)
 |
 [API documentation ↗](http://catalystelements.pages.gitlab.wgtn.cat-it.co.nz/CatalystElements/#/elements/catalyst-toggle-button)
 
@@ -18,26 +18,14 @@ npm install --save "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/ca
 
 ## Usage
 
-Import the component's definition on each page it is to be used on:
+### As a Module (Recommend)
 
-```html
-<script src="node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.js"></script>
-```
-
-Then simply use it like any other tag:
-
-```html
-<catalyst-toggle-button>My Button</catalyst-toggle-button>
-```
-
-### Usage as a Module
-
-Import the module on each page that uses the component, then register the element:
+Import the module on each page that uses the component, then register the element.
 
 ```html
 <script type="module">
   // Import the component.
-  import { CatalystToggleButton } from 'node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.module.js';
+  import { CatalystToggleButton } from './node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.module.js';
 
   // If not using web component polyfills or if polyfills are ready, register the elements.
   if (window.WebComponents === undefined || window.WebComponents.ready) {
@@ -50,6 +38,21 @@ Import the module on each page that uses the component, then register the elemen
     });
   }
 </script>
+```
+
+Then simply use it like any other tag:
+
+```html
+<catalyst-toggle-button>My Button</catalyst-toggle-button>
+```
+
+### As a script
+
+Import the script for the component on each page that it is uses on.
+
+```html
+<!-- Import the element -->
+<script src="node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.js"></script>
 ```
 
 ## Browser Compatibility

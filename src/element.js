@@ -1,20 +1,4 @@
 /**
- * Get the template for this element.
- */
-function getTemplate() {
-  let template = document.createElement('template');
-  template.innerHTML = `<style>[[inject:style]][[endinject]]</style>[[inject:template]][[endinject]]`;  // eslint-disable-line quotes
-
-  // If using ShadyCSS.
-  if (window.ShadyCSS !== undefined) {
-    // Rename classes as needed to ensure style scoping.
-    window.ShadyCSS.prepareTemplate(template, CatalystToggleButton.is);
-  }
-
-  return template;
-}
-
-/**
  * `<catalyst-toggle-button>` is a toggle button web component.
  *
  *     <catalyst-toggle-button>Button</catalyst-toggle-button>
@@ -38,8 +22,7 @@ function getTemplate() {
  * @memberof CatalystElements
  * @group Catalyst Elements
  * @element catalyst-toggle-button
- * @demo demo/demo.es5.html ES5 Component Demo
- * @demo demo/demo.es6.html ES6 Component Demo
+ * @demo demo/basic.html Basic
  */
 class CatalystToggleButton extends HTMLElement {
 
@@ -49,6 +32,22 @@ class CatalystToggleButton extends HTMLElement {
    */
   static get is() {
     return 'catalyst-toggle-button';
+  }
+
+  /**
+   * Get the default template used by this element.
+   */
+  static get template() {
+    let template = document.createElement('template');
+    template.innerHTML = `<style>[[inject:style]][[endinject]]</style>[[inject:template]][[endinject]]`;  // eslint-disable-line quotes
+
+    // If using ShadyCSS.
+    if (window.ShadyCSS !== undefined) {
+      // Rename classes as needed to ensure style scoping.
+      window.ShadyCSS.prepareTemplate(template, CatalystToggleButton.is);
+    }
+
+    return template;
   }
 
   /**
@@ -90,7 +89,7 @@ class CatalystToggleButton extends HTMLElement {
    * @param {HTMLTemplate} [template]
    *   The template to use.
    */
-  constructor(template = getTemplate()) {
+  constructor(template = CatalystToggleButton.template) {
     super();
 
     // Create a shadow root and stamp out the template's content inside.

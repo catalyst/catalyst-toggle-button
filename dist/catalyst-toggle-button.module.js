@@ -1,20 +1,4 @@
 /**
- * Get the template for this element.
- */
-function getTemplate() {
-  let template = document.createElement('template');
-  template.innerHTML = `<style>:host{display:inline-block;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;padding:2px 7px;margin:0;font:400 13.3333px Arial;letter-spacing:normal;word-spacing:normal;color:#000;text-align:center;text-indent:0;text-rendering:auto;text-shadow:none;text-transform:none;cursor:default;background-color:#ddd;border:2px outset #ddd;-o-border-image:none;border-image:none;-o-border-image:initial;border-image:initial;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-appearance:button;-moz-appearance:button}:host([pressed]){padding:2px 6px 2px 8px;color:#000;text-shadow:.5px .5px 1px #f0f0f0;background-color:#bbb;border-color:#aaa;border-style:inset}:host([hidden]){display:none}</style><slot></slot>`;  // eslint-disable-line quotes
-
-  // If using ShadyCSS.
-  if (window.ShadyCSS !== undefined) {
-    // Rename classes as needed to ensure style scoping.
-    window.ShadyCSS.prepareTemplate(template, CatalystToggleButton.is);
-  }
-
-  return template;
-}
-
-/**
  * `<catalyst-toggle-button>` is a toggle button web component.
  *
  *     <catalyst-toggle-button>Button</catalyst-toggle-button>
@@ -38,8 +22,7 @@ function getTemplate() {
  * @memberof CatalystElements
  * @group Catalyst Elements
  * @element catalyst-toggle-button
- * @demo demo/demo.es5.html ES5 Component Demo
- * @demo demo/demo.es6.html ES6 Component Demo
+ * @demo demo/basic.html Basic
  */
 class CatalystToggleButton extends HTMLElement {
 
@@ -49,6 +32,22 @@ class CatalystToggleButton extends HTMLElement {
    */
   static get is() {
     return 'catalyst-toggle-button';
+  }
+
+  /**
+   * Get the default template used by this element.
+   */
+  static get template() {
+    let template = document.createElement('template');
+    template.innerHTML = `<style>:host{display:inline-block;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;padding:2px 7px;margin:0;font:400 13.3333px Arial;letter-spacing:normal;word-spacing:normal;color:#000;text-align:center;text-indent:0;text-rendering:auto;text-shadow:none;text-transform:none;cursor:default;background-color:#ddd;border:2px outset #ddd;-o-border-image:none;border-image:none;-o-border-image:initial;border-image:initial;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-appearance:button;-moz-appearance:button}:host([pressed]){padding:2px 6px 2px 8px;color:#000;text-shadow:.5px .5px 1px #f0f0f0;background-color:#bbb;border-color:#aaa;border-style:inset}:host([hidden]){display:none}</style><slot></slot>`;  // eslint-disable-line quotes
+
+    // If using ShadyCSS.
+    if (window.ShadyCSS !== undefined) {
+      // Rename classes as needed to ensure style scoping.
+      window.ShadyCSS.prepareTemplate(template, CatalystToggleSwitch.is);
+    }
+
+    return template;
   }
 
   /**
@@ -90,7 +89,7 @@ class CatalystToggleButton extends HTMLElement {
    * @param {HTMLTemplate} [template]
    *   The template to use.
    */
-  constructor(template = getTemplate()) {
+  constructor(template = CatalystToggleButton.template) {
     super();
 
     // Create a shadow root and stamp out the template's content inside.
