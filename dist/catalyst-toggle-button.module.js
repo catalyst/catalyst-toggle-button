@@ -44,7 +44,7 @@ class CatalystToggleButton extends HTMLElement {
     // If using ShadyCSS.
     if (window.ShadyCSS !== undefined) {
       // Rename classes as needed to ensure style scoping.
-      window.ShadyCSS.prepareTemplate(template, CatalystToggleSwitch.is);
+      window.ShadyCSS.prepareTemplate(template, CatalystToggleButton.is);
     }
 
     return template;
