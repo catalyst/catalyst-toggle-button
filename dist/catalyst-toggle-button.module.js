@@ -38,8 +38,7 @@ function getTemplate() {
  * @memberof CatalystElements
  * @group Catalyst Elements
  * @element catalyst-toggle-button
- * @demo demo/demo.es5.html ES5 Component Demo
- * @demo demo/demo.es6.html ES6 Component Demo
+ * @demo demo/basic.html Basic
  */
 class CatalystToggleButton extends HTMLElement {
 
