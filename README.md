@@ -12,8 +12,16 @@
 
 ## Installation
 
+Install with npm:
+
 ```sh
 npm install --save "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git"
+```
+
+Install with yarn:
+
+```sh
+yarn add "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git"
 ```
 
 ## Usage
@@ -74,7 +82,7 @@ Project dependencies are managed through [Yarn](https://yarnpkg.com/lang/en/docs
 Install dependencies with:
 
 ```sh
-yarn install
+yarn
 ```
 
 ### Building
