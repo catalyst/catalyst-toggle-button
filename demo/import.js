@@ -1,5 +1,5 @@
-// Import the helpers.
-import '../node_modules/@polymer/iron-demo-helpers/demo-snippet.js';
+// Import the element.
+import { CatalystToggleButton } from '../node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.module.js';
 
 /**
  * Load the polymer elements.
