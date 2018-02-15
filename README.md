@@ -1,12 +1,11 @@
 # &lt;catalyst-toggle-button&gt;
 
-[![pipeline status](https://gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button/badges/master/pipeline.svg)](https://gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button/pipelines)
 [![License](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](LICENSE)
-[![Not published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-unpublished-red.svg)](https://gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button)
+[![Not published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-unpublished-red.svg)](https://github.com/catalyst/catalyst-toggle-button)
 
-[Live Demo ↗](http://catalystelements.pages.gitlab.wgtn.cat-it.co.nz/CatalystElements/#/elements/catalyst-toggle-button/demos/basic)
+[Live Demo ↗](https://catalyst.github.io/CatalystElements/#/elements/catalyst-toggle-button/demos/basic)
 |
-[API documentation ↗](http://catalystelements.pages.gitlab.wgtn.cat-it.co.nz/CatalystElements/#/elements/catalyst-toggle-button)
+[API documentation ↗](https://catalyst.github.io/CatalystElements/#/elements/catalyst-toggle-button)
 
 `<catalyst-toggle-button>` is a web component toggle button, part of the `Catalyst Elements Collection`.
 
@@ -15,13 +14,13 @@
 Install with npm:
 
 ```sh
-npm install --save "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git"
+npm install --save @catalyst-elements/catalyst-toggle-button
 ```
 
 Install with yarn:
 
 ```sh
-yarn add "git+https://git@gitlab.wgtn.cat-it.co.nz/CatalystElements/catalyst-toggle-button.git"
+yarn add @catalyst-elements/catalyst-toggle-button
 ```
 
 ## Usage
@@ -35,11 +34,11 @@ Import the module on each page that uses the component, then register the elemen
   // Import the component.
   import { CatalystToggleButton } from './node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.module.js';
 
-  // If not using web component polyfills or if polyfills are ready, register the elements.
+  // If not using web component polyfills or if polyfills are ready, register the element.
   if (window.WebComponents === undefined || window.WebComponents.ready) {
     CatalystToggleButton.register();
   }
-  // Otherwise wait until the polyfills are ready.
+  // Otherwise wait until the polyfills are ready, then register the element.
   else {
     window.addEventListener('WebComponentsReady', () => {
       CatalystToggleButton.register();
@@ -63,9 +62,15 @@ Import the script for the component on each page that it is uses on.
 <script src="node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.js"></script>
 ```
 
+The element can then be use it like any other tag:
+
+```html
+<catalyst-toggle-button>My Button</catalyst-toggle-button>
+```
+
 ## Browser Compatibility
 
-See details on the wiki: [Catalyst Elements - Browser Compatibility](https://wiki.wgtn.cat-it.co.nz/wiki/Catalyst_Elements#Browser_Compatibility)
+See details on the Catalyst Elements' wiki: [Browser Compatibility](https://github.com/catalyst/CatalystElements/wiki/Browser-Compatibility)
 
 ## Contributions
 
@@ -77,12 +82,13 @@ Please read our [contribution guidelines](./CONTRIBUTING.md).
 
 ### Dependencies
 
-Project dependencies are managed through [Yarn](https://yarnpkg.com/lang/en/docs/install/) (not npm directly).
+Project dependencies are managed through [Yarn](https://yarnpkg.com/lang/en/docs/install).
 
 Install dependencies with:
 
 ```sh
 yarn
+yarn run fix-dependencies
 ```
 
 ### Building
@@ -94,8 +100,7 @@ The build process will create the following versions of the component in the dis
 * an es6 minified script version
 * an es5 minified script version
 
-[Gulp](https://gulpjs.com/) is used to run the build process.  
-Build script: `./gulpfile.js`
+[Gulp](https://gulpjs.com) is used to run the build process.
 
 Build with:
 
@@ -105,7 +110,7 @@ yarn run build
 
 ### Coding Style
 
-This project uses [ESLint](http://eslint.org/) to lint JavaScript and [Sass Lint](https://github.com/sasstools/sass-lint) to lint Sass.
+This project uses [ESLint](http://eslint.org) to lint JavaScript and [Sass Lint](https://github.com/sasstools/sass-lint) to lint Sass.
 
 To test if your code is compliant, run:
 
@@ -115,11 +120,11 @@ yarn run lint
 
 ### Docs
 
-Docs are build with [Polymer](https://www.polymer-project.org/), the [Polymer Build Tool](https://github.com/Polymer/polymer-build) and the [Polymer Analyzer](https://github.com/Polymer/polymer-analyzer).
+Note: This repo does not have it's own GitHub pages. Docs are hosted on the [Catalyst Elements Bundle](https://github.com/catalyst/CatalystElements)'s [GitHub pages](https://catalyst.github.io/CatalystElements).
 
-Docs will automatically be update on GitLab pages whenever a new release tag is created.
+Docs are build with [Polymer](https://www.polymer-project.org), the [Polymer Build Tool](https://github.com/Polymer/polymer-build) and the [Polymer Analyzer](https://github.com/Polymer/polymer-analyzer).
 
-To build the docs locally, first run the analyzer which will update `./analysis.json`. The docs are then built from this file.
+To build the docs, first run the analyzer which will update `./analysis.json`. The docs are then built from this file.
 
 ```sh
 yarn run analyze
