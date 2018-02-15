@@ -12,7 +12,7 @@
     "build-docs": "scripts/build-docs.sh",
     "test": "scripts/test.sh",
     "lint": "scripts/lint.sh",
-    "postinstall": "scripts/postinstall.sh"
+    "fix-dependencies": "scripts/fix-dependencies.sh"
   },
   "devDependencies": {
     "@polymer/iron-component-page": "^3.0.0-pre.1",
