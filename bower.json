@@ -1,0 +1,15 @@
+{
+  "name": "@catalyst-elements/catalyst-toggle-button",
+  "description": "A button that toggles between two states; pressed and not pressed.",
+  "main": "dist/catalyst-toggle-button.js",
+  "authors": [
+    "Rebecca Stevens <rebeccastevens@catalyst.net.nz>"
+  ],
+  "license": "BSD-3-Clause",
+  "keywords": [
+    "web-components",
+    "button",
+    "toggle"
+  ],
+  "homepage": "https://github.com/catalyst/catalyst-toggle-button"
+}
