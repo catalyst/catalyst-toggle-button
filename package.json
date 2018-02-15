@@ -3,9 +3,28 @@
   "license": "BSD-3-Clause",
   "version": "0.3.2",
   "description": "A button that toggles between two states; pressed and not pressed.",
-  "private": true,
-  "repository": "git@gitlab.wgtn.cat-it.co.nz:CatalystElements/catalyst-toggle-button.git",
   "main": "dist/catalyst-toggle-button.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catalyst/catalyst-toggle-button.git"
+  },
+  "author": {
+    "name" : "Rebecca Stevens",
+    "email" : "rebeccastevens@catalyst.net.nz"
+  },
+  "keywords": [
+    "web-components",
+    "button",
+    "toggle"
+  ],
+  "bugs": {
+    "url": "https://github.com/catalyst/catalyst-toggle-button/issues"
+  },
+  "homepage": "https://github.com/catalyst/catalyst-toggle-button#readme",
   "scripts": {
     "build": "scripts/build.sh",
     "analyze": "scripts/analyze.sh",
