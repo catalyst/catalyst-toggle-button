@@ -4,8 +4,8 @@
 [![GitHub release](https://img.shields.io/github/release/catalyst/catalyst-toggle-button.svg?style=flat-square)](https://github.com/catalyst/catalyst-toggle-button/releases)
 [![David](https://img.shields.io/david/catalyst/catalyst-toggle-button.svg?style=flat-square)](https://david-dm.org/catalyst/catalyst-toggle-button)
 [![David](https://img.shields.io/david/dev/catalyst/catalyst-toggle-button.svg?style=flat-square)](https://david-dm.org/catalyst/catalyst-toggle-button?type=dev)
-[![License](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](LICENSE)
-[![Not published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-unpublished-red.svg)](https://github.com/catalyst/catalyst-toggle-button)
+[![License](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg?style=flat-square)](LICENSE)
+[![Not published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-unpublished-red.svg?style=flat-square)](https://github.com/catalyst/catalyst-toggle-button)
 
 [Live Demo ↗](https://catalyst.github.io/CatalystElements/#/elements/catalyst-toggle-button/demos/basic)
 |
