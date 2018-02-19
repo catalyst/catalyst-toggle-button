@@ -36,7 +36,7 @@
       /**
        * The element's tag name.
        *
-       * @type {String}
+       * @returns {string}
        */
       static get is() {
         return 'catalyst-toggle-button';
@@ -44,13 +44,15 @@
       /**
        * Return's true if this element has been registered, otherwise false.
        *
-       * @type {Boolean}
+       * @returns {boolean}
        */
       static get _isRegistered() {
         return !!CatalystToggleButton.__isRegistered;
       }
       /**
        * Get the default template used by this element.
+       *
+       * @returns {HTMLTemplateElement}
        */
       static get template() {
         let template = document.createElement('template');
@@ -66,7 +68,9 @@
       /**
        * Key codes.
        *
+       * @readonly
        * @enum {number}
+       * @returns {object}
        */
       static get _KEYCODE() {
         if (this.__keycode === undefined) {
@@ -136,6 +140,8 @@
       }
       /**
        * Fires when the element is inserted into the DOM.
+       *
+       * @protected
        */
       connectedCallback() {
         // If using ShadyCSS.
@@ -187,6 +193,8 @@
       }
       /**
        * Fires when the element is removed from the DOM.
+       *
+       * @protected
        */
       disconnectedCallback() {
         this.removeEventListener('keydown', this._onKeyDown);
@@ -345,6 +353,7 @@
       /**
        * Fired when any of the attributes in the `observedAttributes` array change.
        *
+       * @protected
        * @param {string} name
        *   The name of the attribute that changed.
        * @param {*} oldValue

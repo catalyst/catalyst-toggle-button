@@ -29,7 +29,7 @@ class CatalystToggleButton extends HTMLElement {
   /**
    * The element's tag name.
    *
-   * @type {String}
+   * @returns {string}
    */
   static get is() {
     return 'catalyst-toggle-button';
@@ -38,7 +38,7 @@ class CatalystToggleButton extends HTMLElement {
   /**
    * Return's true if this element has been registered, otherwise false.
    *
-   * @type {Boolean}
+   * @returns {boolean}
    */
   static get _isRegistered() {
     return !!CatalystToggleButton.__isRegistered;
@@ -46,6 +46,8 @@ class CatalystToggleButton extends HTMLElement {
 
   /**
    * Get the default template used by this element.
+   *
+   * @returns {HTMLTemplateElement}
    */
   static get template() {
     let template = document.createElement('template');
@@ -63,7 +65,9 @@ class CatalystToggleButton extends HTMLElement {
   /**
    * Key codes.
    *
+   * @readonly
    * @enum {number}
+   * @returns {object}
    */
   static get _KEYCODE() {
     if (this.__keycode === undefined) {
@@ -135,6 +139,8 @@ class CatalystToggleButton extends HTMLElement {
 
   /**
    * Fires when the element is inserted into the DOM.
+   *
+   * @protected
    */
   connectedCallback() {
     // If using ShadyCSS.
@@ -192,6 +198,8 @@ class CatalystToggleButton extends HTMLElement {
 
   /**
    * Fires when the element is removed from the DOM.
+   *
+   * @protected
    */
   disconnectedCallback() {
     this.removeEventListener('keydown', this._onKeyDown);
@@ -367,6 +375,7 @@ class CatalystToggleButton extends HTMLElement {
   /**
    * Fired when any of the attributes in the `observedAttributes` array change.
    *
+   * @protected
    * @param {string} name
    *   The name of the attribute that changed.
    * @param {*} oldValue
