@@ -1,5 +1,5 @@
 // Import the element.
-import { CatalystToggleButton } from '../../catalyst-toggle-button/dist/catalyst-toggle-button.module.js';
+import '../../catalyst-toggle-button/dist/catalyst-toggle-button.module.js';
 
 /**
  * Load the polymer elements.
@@ -10,11 +10,9 @@ function loadPolymerElements() {
 
 // Register the element.
 if (window.WebComponents === undefined || window.WebComponents.ready) {
-  CatalystToggleButton.register();
   loadPolymerElements();
 } else {
   window.addEventListener('WebComponentsReady', () => {
-    CatalystToggleButton.register();
     loadPolymerElements();
   });
 }

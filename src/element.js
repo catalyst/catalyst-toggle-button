@@ -27,11 +27,21 @@
 class CatalystToggleButton extends HTMLElement {
 
   /**
-   * @constant {String}
-   *   The element's tag name.
+   * The element's tag name.
+   *
+   * @type {String}
    */
   static get is() {
     return 'catalyst-toggle-button';
+  }
+
+  /**
+   * Return's true if this element has been registered, otherwise false.
+   *
+   * @type {Boolean}
+   */
+  static get _isRegistered() {
+    return !!CatalystToggleButton.__isRegistered;
   }
 
   /**
@@ -79,8 +89,22 @@ class CatalystToggleButton extends HTMLElement {
   /**
    * Register this class as an element.
    */
-  static register() {
-    window.customElements.define(CatalystToggleButton.is, CatalystToggleButton);
+  static _register() {
+    const doRegister = () => {
+      window.customElements.define(CatalystToggleButton.is, CatalystToggleButton);
+      CatalystToggleButton.__isRegistered = true;
+    };
+
+    // If not using web component polyfills or if polyfills are ready, register the element.
+    if (window.WebComponents === undefined || window.WebComponents.ready) {
+      doRegister();
+    }
+    // Otherwise wait until the polyfills are ready, then register the element.
+    else {
+      window.addEventListener('WebComponentsReady', () => {
+        doRegister();
+      });
+    }
   }
 
   /**
@@ -492,6 +516,11 @@ class CatalystToggleButton extends HTMLElement {
       bubbles: true,
     }));
   }
+}
+
+// Register the element if it is not already registered.
+if (!CatalystToggleButton._isRegistered) {
+  CatalystToggleButton._register();
 }
 
 // Export the element.

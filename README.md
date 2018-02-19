@@ -31,24 +31,10 @@ yarn add @catalyst-elements/catalyst-toggle-button
 
 ### As a Module (Recommend)
 
-Import the module on each page that uses the component, then register the element.
+Import the module on each page that uses the component.
 
 ```html
-<script type="module">
-  // Import the component.
-  import { CatalystToggleButton } from './node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.module.js';
-
-  // If not using web component polyfills or if polyfills are ready, register the element.
-  if (window.WebComponents === undefined || window.WebComponents.ready) {
-    CatalystToggleButton.register();
-  }
-  // Otherwise wait until the polyfills are ready, then register the element.
-  else {
-    window.addEventListener('WebComponentsReady', () => {
-      CatalystToggleButton.register();
-    });
-  }
-</script>
+<script type="module" src="node_modules/@catalyst-elements/catalyst-toggle-switch/dist/catalyst-toggle-switch.module.js"></script>
 ```
 
 Then simply use it like any other tag:
