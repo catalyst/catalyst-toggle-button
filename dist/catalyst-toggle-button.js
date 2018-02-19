@@ -47,7 +47,7 @@
        * @returns {boolean}
        */
       static get _isRegistered() {
-        return window.customElements !== undefined && window.customElements.get(CatalystToggleButton.is);
+        return window.customElements !== undefined && window.customElements.get(CatalystToggleButton.is) !== undefined;
       }
       /**
        * Get the default template used by this element.

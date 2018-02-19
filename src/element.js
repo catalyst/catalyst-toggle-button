@@ -41,7 +41,7 @@ class CatalystToggleButton extends HTMLElement {
    * @returns {boolean}
    */
   static get _isRegistered() {
-    return window.customElements !== undefined && window.customElements.get(CatalystToggleButton.is);
+    return window.customElements !== undefined && window.customElements.get(CatalystToggleButton.is) !== undefined;
   }
 
   /**
