@@ -82,9 +82,10 @@ yarn
 
 ### Viewing the element
 
-First start up the included local webserver:
+First analyze the projcet then start up the included local webserver:
 
 ```sh
+yarn run analyze
 yarn run serve
 ```
 
@@ -126,7 +127,7 @@ Note: This repo does not have it's own GitHub pages. Docs are hosted on the [Cat
 
 Docs are build with [Polymer](https://www.polymer-project.org), the [Polymer Build Tool](https://github.com/Polymer/polymer-build) and the [Polymer Analyzer](https://github.com/Polymer/polymer-analyzer).
 
-To build the docs, first run the analyzer which will update `./analysis.json`. The docs are then built from this file.
+To build the docs, first run the analyzer which will update `./analysis.json`. This file contains all the infomation about the element the docs will use.
 
 ```sh
 yarn run analyze
