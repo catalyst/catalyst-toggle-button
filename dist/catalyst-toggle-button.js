@@ -47,7 +47,7 @@
        * @returns {boolean}
        */
       static get _isRegistered() {
-        return !!CatalystToggleButton.__isRegistered;
+        return window.customElements !== undefined && window.customElements.get(CatalystToggleButton.is);
       }
       /**
        * Get the default template used by this element.
@@ -104,7 +104,6 @@
       static _register() {
         const doRegister = () => {
           window.customElements.define(CatalystToggleButton.is, CatalystToggleButton);
-          CatalystToggleButton.__isRegistered = true;
         };
         // If not using web component polyfills or if polyfills are ready, register the element.
         if (window.WebComponents === undefined || window.WebComponents.ready) {

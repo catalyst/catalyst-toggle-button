@@ -41,7 +41,7 @@ class CatalystToggleButton extends HTMLElement {
    * @returns {boolean}
    */
   static get _isRegistered() {
-    return !!CatalystToggleButton.__isRegistered;
+    return window.customElements !== undefined && window.customElements.get(CatalystToggleButton.is);
   }
 
   /**
@@ -96,7 +96,6 @@ class CatalystToggleButton extends HTMLElement {
   static _register() {
     const doRegister = () => {
       window.customElements.define(CatalystToggleButton.is, CatalystToggleButton);
-      CatalystToggleButton.__isRegistered = true;
     };
 
     // If not using web component polyfills or if polyfills are ready, register the element.
