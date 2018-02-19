@@ -5,7 +5,6 @@
    * @namespace CatalystElements
    */
   window.CatalystElements = window.CatalystElements || {};
-
 /**
      * `<catalyst-toggle-button>` is a toggle button web component.
      *
@@ -485,6 +484,6 @@
     if (!CatalystToggleButton._isRegistered) {
       CatalystToggleButton._register();
     }
-  // Make the class globally accessible under the `CatalystElements` object.
-  window.CatalystElements.CatalystToggleButton = CatalystToggleButton;
+    // Make the class globally accessible under the `CatalystElements` object.
+    window.CatalystElements.CatalystToggleButton = CatalystToggleButton;
 })();
