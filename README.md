@@ -13,6 +13,20 @@
 
 `<catalyst-toggle-button>` is a web component toggle button, part of the `Catalyst Elements Collection`.
 
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script type="module" src="dist/catalyst-toggle-button.module.js"></script>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<catalyst-toggle-button>My Button</catalyst-toggle-button>
+```
+
 ## Installation
 
 Install with npm:
@@ -37,11 +51,7 @@ Import the module on each page that uses the component.
 <script type="module" src="node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.module.js"></script>
 ```
 
-Then simply use it like any other tag:
-
-```html
-<catalyst-toggle-button>My Button</catalyst-toggle-button>
-```
+Then simply use it like any other tag.
 
 ### As a script
 
@@ -52,11 +62,7 @@ Import the script for the component on each page that it is uses on.
 <script src="node_modules/@catalyst-elements/catalyst-toggle-button/dist/catalyst-toggle-button.js"></script>
 ```
 
-The element can then be use it like any other tag:
-
-```html
-<catalyst-toggle-button>My Button</catalyst-toggle-button>
-```
+The element can then be use it like any other tag.
 
 ## Browser Compatibility
 
