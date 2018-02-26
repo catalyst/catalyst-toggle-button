@@ -4,6 +4,8 @@
 [![David](https://img.shields.io/david/catalyst/catalyst-toggle-button.svg?style=flat-square)](https://david-dm.org/catalyst/catalyst-toggle-button)
 [![David](https://img.shields.io/david/dev/catalyst/catalyst-toggle-button.svg?style=flat-square)](https://david-dm.org/catalyst/catalyst-toggle-button?type=dev)
 [![Not published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-unpublished-red.svg?style=flat-square)](https://github.com/catalyst/catalyst-toggle-button)
+[![npm (scoped)](https://img.shields.io/npm/v/@catalyst-elements/catalyst-toggle-button.svg?style=flat-square)](https://www.npmjs.com/package/@catalyst-elements/catalyst-toggle-button)
+[![Bower not supported](https://img.shields.io/badge/bower-not_supported-red.svg?style=flat-square)]()
 [![Polymer 2 not supported](https://img.shields.io/badge/Polymer_2-not_supported-red.svg?style=flat-square)]()
 [![Polymer 3 support pending](https://img.shields.io/badge/Polymer_3-support_pending-yellow.svg?style=flat-square)]()
 
@@ -12,6 +14,8 @@
 [API documentation ↗](https://catalyst.github.io/CatalystElements/#/elements/catalyst-toggle-button)
 
 `<catalyst-toggle-button>` is a web component toggle button, part of the `Catalyst Elements Collection`.
+
+## Example Usage
 
 <!---
 ```
@@ -23,6 +27,7 @@
 </custom-element-demo>
 ```
 -->
+
 ```html
 <catalyst-toggle-button>My Button</catalyst-toggle-button>
 ```
@@ -40,6 +45,8 @@ Install with yarn:
 ```sh
 yarn add @catalyst-elements/catalyst-toggle-button
 ```
+
+Please note that this package is not compatible with Bower.
 
 ## Usage
 
