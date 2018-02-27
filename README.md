@@ -21,7 +21,7 @@
 ```
 <custom-element-demo>
   <template>
-    <script type="module" src="dist/catalyst-toggle-button.module.js"></script>
+    <script type="module" src="dist/catalyst-toggle-button.js"></script>
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
