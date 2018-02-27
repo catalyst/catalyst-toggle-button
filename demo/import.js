@@ -1,5 +1,5 @@
 // Import the element.
-import '../../catalyst-toggle-button/dist/catalyst-toggle-button.module.js';
+import '../../catalyst-toggle-button/dist/catalyst-toggle-button.js';
 
 /**
  * Load the polymer elements.

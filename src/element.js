@@ -19,7 +19,6 @@
  * @extends HTMLElement
  *
  * @customElement
- * @memberof CatalystElements
  * @group Catalyst Elements
  * @element catalyst-toggle-button
  * @demo demo/basic.html Basic
