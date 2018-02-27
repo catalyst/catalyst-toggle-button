@@ -67,7 +67,7 @@
     "merge-stream": "^1.0.1",
     "polymer-analyzer": "^v3.0.0-pre.12",
     "polymer-build": "^2.1.1",
-    "polyserve": "^0.23.0",
+    "polyserve": "^0.24.0",
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^11.0.0",
     "postcss-reporter": "^5.0.0",
