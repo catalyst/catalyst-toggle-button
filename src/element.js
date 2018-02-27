@@ -13,7 +13,7 @@
  *
  * ### Styling
  *
- * There are no custom properties or mixins available for styling this component.
+ * Style this element using native css properties; there are no custom properties available for this component.
  *
  * @class
  * @extends HTMLElement
