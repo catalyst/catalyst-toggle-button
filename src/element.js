@@ -35,15 +35,6 @@ class CatalystToggleButton extends HTMLElement {
   }
 
   /**
-   * Return's true if this element has been registered, otherwise false.
-   *
-   * @returns {boolean}
-   */
-  static get _isRegistered() {
-    return window.customElements !== undefined && window.customElements.get(CatalystToggleButton.is) !== undefined;
-  }
-
-  /**
    * Get the default template used by this element.
    *
    * @returns {HTMLTemplateElement}
@@ -87,26 +78,6 @@ class CatalystToggleButton extends HTMLElement {
    */
   static get observedAttributes() {
     return ['checked', 'pressed', 'disabled', 'required', 'name', 'value', 'form'];
-  }
-
-  /**
-   * Register this class as an element.
-   */
-  static _register() {
-    const doRegister = () => {
-      window.customElements.define(CatalystToggleButton.is, CatalystToggleButton);
-    };
-
-    // If not using web component polyfills or if polyfills are ready, register the element.
-    if (window.WebComponents === undefined || window.WebComponents.ready) {
-      doRegister();
-    }
-    // Otherwise wait until the polyfills are ready, then register the element.
-    else {
-      window.addEventListener('WebComponentsReady', () => {
-        doRegister();
-      });
-    }
   }
 
   /**
@@ -525,10 +496,17 @@ class CatalystToggleButton extends HTMLElement {
   }
 }
 
-// Register the element if it is not already registered.
-if (!CatalystToggleButton._isRegistered) {
-  CatalystToggleButton._register();
-}
+// Make sure the polyfills are ready (if they are being used).
+new Promise((resolve) => {
+  if (window.WebComponents === undefined || window.WebComponents.ready) {
+    resolve();
+  } else {
+    window.addEventListener('WebComponentsReady', () => resolve());
+  }
+}).then(() => {
+  // Register the element.
+  window.customElements.define(CatalystToggleButton.is, CatalystToggleButton);
+});
 
 // Export the element.
 export { CatalystToggleButton };
