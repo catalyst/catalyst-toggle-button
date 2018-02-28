@@ -225,18 +225,18 @@ gulp.task('sass-compile', () => {
 });
 
 // Clean the dist path.
-gulp.task('clean-dist', (done) => {
-  del(distPath).then(() => { done(); });
+gulp.task('clean-dist', async () => {
+  await del(distPath);
 });
 
 // Clean the tmp path.
-gulp.task('clean-tmp', (done) => {
-  del(tmpPath).then(() => { done(); });
+gulp.task('clean-tmp', async () => {
+  await del(tmpPath);
 });
 
 // Clean the docs path.
-gulp.task('clean-docs', (done) => {
-  del(docsPath).then(() => { done(); });
+gulp.task('clean-docs', async () => {
+  await del(docsPath);
 });
 
 gulp.task('create-element:module', () => {
@@ -481,10 +481,8 @@ gulp.task('docs-generate', gulp.series(async () => {
 }, () => {
   return gulp.src(`${docsPath}/${tmpPath}/**`)
     .pipe(gulp.dest(docsPath));
-}, (done) => {
-  del(`${docsPath}/${tmpPath}/`).then(() => {
-    done();
-  });
+}, async () => {
+  await del(`${docsPath}/${tmpPath}/`);
 }));
 
 // Build all the component's versions.
