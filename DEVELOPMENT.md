@@ -83,6 +83,8 @@ Then visit http://127.0.0.1:8081/docs/
 
 Testing is done using the [web-component-tester](https://github.com/Polymer/web-component-tester).
 
+Note: Test are run against the built version of the element. Make sure you build the element before testing or else your changes won't be present. See [Building](#building).
+
 ### Running Tests On The Command Line
 
 ```sh
