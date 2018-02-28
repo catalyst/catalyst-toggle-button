@@ -509,4 +509,5 @@ new Promise((resolve) => {
 });
 
 // Export the element.
+export default CatalystToggleButton;
 export { CatalystToggleButton };
