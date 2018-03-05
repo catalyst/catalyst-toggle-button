@@ -469,17 +469,17 @@ class CatalystToggleButton extends HTMLElement {
       return;
     }
 
-    // The key used in the event.
-    let eventDetailKey;
+    // The detail of the event.
+    let detail;
 
     if (this.getAttribute('role') === 'button') {
       // Change the value of pressed.
       this.pressed = !this.pressed;
-      eventDetailKey = 'pressed';
+      detail = {pressed: this.pressed};
     } else {
       // Change the value of checked.
       this.checked = !this.checked;
-      eventDetailKey = 'checked';
+      detail = {checked: this.checked};
     }
 
     /**
@@ -488,9 +488,7 @@ class CatalystToggleButton extends HTMLElement {
      * @event change
      */
     this.dispatchEvent(new CustomEvent('change', {
-      detail: {
-        [eventDetailKey]: this.checked,
-      },
+      detail: detail,
       bubbles: true,
     }));
   }
