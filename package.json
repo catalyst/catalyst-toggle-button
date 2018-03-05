@@ -34,6 +34,9 @@
     "serve": "scripts/serve.sh",
     "postinstall": "scripts/fix-dependencies.sh"
   },
+  "dependencies": {
+    "@catalyst-elements/catalyst-toggle-mixin": "^0.1.1"
+  },
   "devDependencies": {
     "@polymer/iron-component-page": "^3.0.0-pre.1",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.1",
