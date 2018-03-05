@@ -9,9 +9,9 @@
 [![Polymer 2 not supported](https://img.shields.io/badge/Polymer_2-not_supported-red.svg?style=flat-square)]()
 [![Polymer 3 support pending](https://img.shields.io/badge/Polymer_3-support_pending-yellow.svg?style=flat-square)]()
 
-[Live Demo ↗](https://catalyst.github.io/CatalystElements/#/elements/catalyst-toggle-button/demos/basic)
+[Live Demo ↗](https://catalyst.github.io/CatalystElementsBundle/#/elements/catalyst-toggle-button/demos/basic)
 |
-[API documentation ↗](https://catalyst.github.io/CatalystElements/#/elements/catalyst-toggle-button)
+[API documentation ↗](https://catalyst.github.io/CatalystElementsBundle/#/elements/catalyst-toggle-button)
 
 `<catalyst-toggle-button>` is a web component toggle button, part of the `Catalyst Elements Collection`.
 
