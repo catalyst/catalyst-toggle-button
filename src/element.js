@@ -112,12 +112,6 @@ class CatalystToggleButton extends HTMLElement {
    * @protected
    */
   connectedCallback() {
-    // If using ShadyCSS.
-    if (window.ShadyCSS !== undefined) {
-      // Style the element.
-      window.ShadyCSS.styleElement(this);
-    }
-
     // Upgrade the element's properties.
     this._upgradeProperty('checked');
     this._upgradeProperty('pressed');
@@ -142,6 +136,15 @@ class CatalystToggleButton extends HTMLElement {
     // Add the element's event listeners.
     this.addEventListener('keydown', this._onKeyDown);
     this.addEventListener('click', this._onClick);
+
+    // Set up labels on this element.
+    this.setUpLabels();
+
+    // If using ShadyCSS.
+    if (window.ShadyCSS !== undefined) {
+      // Style the element.
+      window.ShadyCSS.styleElement(this);
+    }
   }
 
   /**
@@ -162,6 +165,37 @@ class CatalystToggleButton extends HTMLElement {
       let value = this[prop];
       delete this[prop];
       this[prop] = value;
+    }
+  }
+
+  /**
+   * Updated the labels for this element.
+   */
+  setUpLabels() {
+    const id = this.id;
+    if (id === undefined || id === '') {
+      return;
+    }
+
+    const rootNode = 'getRootNode' in this ? this.getRootNode() : document;
+    const labels = rootNode.querySelectorAll(`label[for="${id}"]`);
+
+    if (labels && labels.length > 0) {
+      let labelledBy = [];
+      for (let i = 0; i < labels.length; i++) {
+        let label = labels[i];
+        if (label.id === '') {
+          label.id = this._generateGuid();
+        }
+        labelledBy.push(label.id);
+
+        if (this.getAttribute('role') !== 'button') {
+          // Remove the event listener if it is already set the add it.
+          label.removeEventListener('click', this._onLabelClick.bind(this));
+          label.addEventListener('click', this._onLabelClick.bind(this));
+        }
+      }
+      this.setAttribute('aria-labelledby', labelledBy.join(' '));
     }
   }
 
@@ -413,7 +447,7 @@ class CatalystToggleButton extends HTMLElement {
         break;
 
       case 'value':
-      // Update the input element's value.
+        // Update the input element's value.
         this.inputElement.setAttribute('value', new String(newValue));
         break;
 
@@ -457,6 +491,13 @@ class CatalystToggleButton extends HTMLElement {
   }
 
   /**
+   * Called when a label of this element is clicked.
+   */
+  _onLabelClick() {
+    this._toggleChecked();
+  }
+
+  /**
    * `_toggleChecked()` calls the either the `checked` or `pressed` setter and flips its state.
    * Because `_toggleChecked()` is only caused by a user action, it will
    * also dispatch a change event.
@@ -491,6 +532,18 @@ class CatalystToggleButton extends HTMLElement {
       detail: detail,
       bubbles: true,
     }));
+  }
+
+  /**
+   * Generate a guid (or at least something that seems like one)
+   *
+   * @see https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+   */
+  _generateGuid() {
+    const s4 = () => {
+      return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    };
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   }
 }
 
