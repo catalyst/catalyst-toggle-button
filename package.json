@@ -1,7 +1,7 @@
 {
   "name": "@catalyst-elements/catalyst-toggle-button",
   "license": "BSD-3-Clause",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "A button that toggles between two states; pressed and not pressed.",
   "main": "dist/catalyst-toggle-button.js",
   "directories": {
