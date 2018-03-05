@@ -26,5 +26,22 @@
         <catalyst-toggle-button>My Button</catalyst-toggle-button>
       </template>
     </demo-snippet>
+
+    <h3>With Label:</h3>
+    <demo-snippet>
+      <template>
+        <label for="toggle-button" id="toggle-button-label" style="display:inline-block;width:100px;">Not Pressed</label>
+        <catalyst-toggle-button id="toggle-button">My Button</catalyst-toggle-button>
+
+        <script>
+          let toggleButton = document.querySelector('#toggle-button');
+          let toggleButtonLabel = document.querySelector('#toggle-button-label');
+          toggleButton.addEventListener('change', (event) => {
+            toggleButtonLabel.textContent = event.detail.pressed ? 'Pressed' : 'Not Pressed';
+          });
+        </script>
+      </template>
+    </demo-snippet>
+  </body>
   </body>
 </html>
