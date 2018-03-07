@@ -8,7 +8,6 @@ module.exports = {
 
   element: {
     tag: 'catalyst-toggle-button',
-    class: 'CatalystToggleButton',
     scope: packageInfo.name.substring(0, packageInfo.name.lastIndexOf('/')),
   },
 
