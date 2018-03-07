@@ -4,11 +4,17 @@ const fs = require('graceful-fs');
 // Load package.json
 let packageInfo = JSON.parse(fs.readFileSync('./package.json'));
 
+let scope = packageInfo.name.substring(0, packageInfo.name.lastIndexOf('/'));
+if (scope === '') {
+  scope = null;
+}
+
 module.exports = {
 
   element: {
     tag: 'catalyst-toggle-button',
-    scope: packageInfo.name.substring(0, packageInfo.name.lastIndexOf('/')),
+    scope: scope,
+    nodeScopePath: 'node_modules' + (scope === null ? '' : `/${scope}`)
   },
 
   src: {
@@ -21,7 +27,7 @@ module.exports = {
   },
 
   dist: {
-    path: 'dist',
+    path: 'dist'
   },
 
   demos: {
