@@ -1,5 +1,5 @@
 // Import dependencies.
-import CatalystToggleMixin from '../node_modules/@catalyst-elements/catalyst-toggle-mixin/catalyst-toggle-mixin.js';
+import CatalystToggleMixin from '../node_modules/@catalyst-elements/catalyst-toggle-mixin/dist/catalyst-toggle-mixin.js';
 
 const SuperClass = CatalystToggleMixin(HTMLElement);
 
@@ -60,28 +60,15 @@ class CatalystToggleButton extends SuperClass {
 
   /**
    * Construct the element.
-   *
-   * @param {HTMLTemplate} [template]
-   *   The template to use.
    */
-  constructor(template = CatalystToggleButton.template) {
+  constructor() {
     super();
 
     // Create a shadow root and stamp out the template's content inside.
     this.attachShadow({mode: 'open'});
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.shadowRoot.appendChild(CatalystToggleButton.template.content.cloneNode(true));
 
-    // The input element needs to be in the lightDom to work with form elements.
-
-    /**
-     * The element that will be submitting as part of a form to represent this component.
-     *
-     * @type {HTMLElement}
-     */
-    this._inputElement = document.createElement('input');
-    this._inputElement.type = 'checkbox';
-    this._inputElement.style.display = 'none';
-    this.appendChild(this._inputElement);
+    super.initInputElement();
   }
 
   /**
