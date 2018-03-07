@@ -67,8 +67,6 @@ class CatalystToggleButton extends SuperClass {
     // Create a shadow root and stamp out the template's content inside.
     this.attachShadow({mode: 'open'});
     this.shadowRoot.appendChild(CatalystToggleButton.template.content.cloneNode(true));
-
-    super.initInputElement();
   }
 
   /**
