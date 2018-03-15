@@ -1,6 +1,6 @@
 # &lt;catalyst-toggle-button&gt;
 
-[![Travis](https://img.shields.io/travis/catalyst/catalyst-toggle-button.svg?style=flat-square)](https://travis-ci.org/catalyst/catalyst-toggle-button)
+[![Travis](https://img.shields.io/travis/catalyst/catalyst-toggle-button/master.svg?style=flat-square)](https://travis-ci.org/catalyst/catalyst-toggle-button)
 [![David](https://img.shields.io/david/catalyst/catalyst-toggle-button.svg?style=flat-square)](https://david-dm.org/catalyst/catalyst-toggle-button)
 [![David](https://img.shields.io/david/dev/catalyst/catalyst-toggle-button.svg?style=flat-square)](https://david-dm.org/catalyst/catalyst-toggle-button?type=dev)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg?style=flat-square)](https://www.webcomponents.org/element/catalyst/catalyst-toggle-button)
