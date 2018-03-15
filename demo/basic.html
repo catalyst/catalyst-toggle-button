@@ -38,12 +38,11 @@
       <catalyst-toggle-button id="toggle-button">My Button</catalyst-toggle-button>
 
       <script>
-        let toggleButton = document.querySelector('#toggle-button');
-        let toggleButtonLabel = document.querySelector('#toggle-button-label');
-        toggleButton.addEventListener('change', event => {
-          toggleButtonLabel.textContent = event.detail.pressed
-            ? 'Pressed'
-            : 'Not Pressed';
+        const button = document.querySelector('#toggle-button');
+        const label = document.querySelector('#toggle-button-label');
+
+        button.addEventListener('change', event => {
+          label.textContent = event.detail.pressed ? 'Pressed' : 'Not Pressed';
         });
       </script>
     </template>
