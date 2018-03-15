@@ -30,7 +30,7 @@ function createElementModule() {
       modifyFile(content => {
         return content.replace(
           new RegExp(`../node_modules/${config.element.scope}/`, 'g'),
-          '../../'
+          '../'
         );
       })
     )
