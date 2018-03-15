@@ -30,7 +30,6 @@ const SuperClass = CatalystToggleMixin(HTMLElement);
  * @demo demo/basic.html Basic
  */
 class CatalystToggleButton extends SuperClass {
-
   /**
    * The element's tag name.
    *
@@ -47,7 +46,7 @@ class CatalystToggleButton extends SuperClass {
    */
   static get template() {
     let template = document.createElement('template');
-    template.innerHTML = `<style>[[inject:style]][[endinject]]</style>[[inject:template]][[endinject]]`;  // eslint-disable-line quotes
+    template.innerHTML = `<style>[[inject:style]][[endinject]]</style>[[inject:template]][[endinject]]`; // eslint-disable-line quotes
 
     // If using ShadyCSS.
     if (window.ShadyCSS !== undefined) {
@@ -65,8 +64,10 @@ class CatalystToggleButton extends SuperClass {
     super();
 
     // Create a shadow root and stamp out the template's content inside.
-    this.attachShadow({mode: 'open'});
-    this.shadowRoot.appendChild(CatalystToggleButton.template.content.cloneNode(true));
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(
+      CatalystToggleButton.template.content.cloneNode(true)
+    );
   }
 
   /**
@@ -85,7 +86,7 @@ class CatalystToggleButton extends SuperClass {
 }
 
 // Make sure the polyfills are ready (if they are being used).
-new Promise((resolve) => {
+new Promise(resolve => {
   if (window.WebComponents === undefined || window.WebComponents.ready) {
     resolve();
   } else {

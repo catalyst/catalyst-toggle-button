@@ -1,47 +1,54 @@
 <!doctype html>
 <html>
-  <head>
-    <title>&lt;catalyst-toggle-button&gt; Basic Demo</title>
 
-    <!-- Web Component Pollyfills -->
-    <!-- [[inject:custom-elements-es5-adapter]] --><script>console.info('custom-elements-es5-adapter is not in use.'); // eslint-disable-line no-console</script><!-- [[endinject]] -->
-    <script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../../@webcomponents/shadycss/scoping-shim.min.js"></script>
-    <script src="../../../@webcomponents/shadycss/apply-shim.min.js"></script>
+<head>
+  <title>&lt;catalyst-toggle-button&gt; Basic Demo</title>
 
-    <!-- Import the things we need -->
-    <script src="../../../marked/marked.min.js"></script>
-    <script type="module" src="imports-importer.js"></script>
+  <!-- Web Component Pollyfills -->
+  <!-- [[inject:custom-elements-es5-adapter]] -->
+  <script>console.info('custom-elements-es5-adapter is not in use.'); // eslint-disable-line no-console</script>
+  <!-- [[endinject]] -->
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../../@webcomponents/shadycss/scoping-shim.min.js"></script>
+  <script src="../../../@webcomponents/shadycss/apply-shim.min.js"></script>
 
-    <style>
-      body {
-        font-family: Arial;
-      }
-    </style>
-  </head>
-  <body>
-    <h3>Basic:</h3>
-    <demo-snippet>
-      <template>
-        <catalyst-toggle-button>My Button</catalyst-toggle-button>
-      </template>
-    </demo-snippet>
+  <!-- Import the things we need -->
+  <script src="../../../marked/marked.min.js"></script>
+  <script type="module" src="imports-importer.js"></script>
 
-    <h3>With Label:</h3>
-    <demo-snippet>
-      <template>
-        <label for="toggle-button" id="toggle-button-label" style="display:inline-block;width:100px;">Not Pressed</label>
-        <catalyst-toggle-button id="toggle-button">My Button</catalyst-toggle-button>
+  <style>
+    body {
+      font-family: Arial;
+    }
+  </style>
+</head>
 
-        <script>
-          let toggleButton = document.querySelector('#toggle-button');
-          let toggleButtonLabel = document.querySelector('#toggle-button-label');
-          toggleButton.addEventListener('change', (event) => {
-            toggleButtonLabel.textContent = event.detail.pressed ? 'Pressed' : 'Not Pressed';
-          });
-        </script>
-      </template>
-    </demo-snippet>
-  </body>
-  </body>
+<body>
+  <h3>Basic:</h3>
+  <demo-snippet>
+    <template>
+      <catalyst-toggle-button>My Button</catalyst-toggle-button>
+    </template>
+  </demo-snippet>
+
+  <h3>With Label:</h3>
+  <demo-snippet>
+    <template>
+      <label for="toggle-button" id="toggle-button-label" style="display:inline-block;width:100px;">Not Pressed</label>
+      <catalyst-toggle-button id="toggle-button">My Button</catalyst-toggle-button>
+
+      <script>
+        let toggleButton = document.querySelector('#toggle-button');
+        let toggleButtonLabel = document.querySelector('#toggle-button-label');
+        toggleButton.addEventListener('change', event => {
+          toggleButtonLabel.textContent = event.detail.pressed
+            ? 'Pressed'
+            : 'Not Pressed';
+        });
+      </script>
+    </template>
+  </demo-snippet>
+</body>
+</body>
+
 </html>
