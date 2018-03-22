@@ -1,7 +1,7 @@
 // Import dependencies.
-import CatalystToggleMixin from '../node_modules/@catalyst-elements/catalyst-toggle-mixin/catalyst-toggle-mixin.js';
+import catalystToggleMixin from '../node_modules/@catalyst-elements/catalyst-toggle-mixin/catalyst-toggle-mixin.js';
 
-const SuperClass = CatalystToggleMixin(HTMLElement);
+const SuperClass = catalystToggleMixin(HTMLElement);
 
 /**
  * `<catalyst-toggle-button>` is a toggle button web component.
@@ -33,6 +33,7 @@ class CatalystToggleButton extends SuperClass {
   /**
    * The element's tag name.
    *
+   * @public
    * @returns {string}
    */
   static get is() {
@@ -42,10 +43,12 @@ class CatalystToggleButton extends SuperClass {
   /**
    * Get the default template used by this element.
    *
+   * @public
+   * @readonly
    * @returns {HTMLTemplateElement}
    */
   static get template() {
-    let template = document.createElement('template');
+    const template = document.createElement('template');
     template.innerHTML = `<style>[[inject:style]][[endinject]]</style>[[inject:template]][[endinject]]`; // eslint-disable-line quotes
 
     // If using ShadyCSS.
@@ -59,6 +62,8 @@ class CatalystToggleButton extends SuperClass {
 
   /**
    * Construct the element.
+   *
+   * @public
    */
   constructor() {
     super();
@@ -85,17 +90,21 @@ class CatalystToggleButton extends SuperClass {
   }
 }
 
-// Make sure the polyfills are ready (if they are being used).
-new Promise(resolve => {
-  if (window.WebComponents === undefined || window.WebComponents.ready) {
-    resolve();
-  } else {
-    window.addEventListener('WebComponentsReady', () => resolve());
-  }
-}).then(() => {
-  // Register the element.
+/**
+ * Register the element.
+ */
+(async () => {
+  // Make sure the polyfills are ready (if they are being used).
+  await new Promise(resolve => {
+    if (window.WebComponents === undefined || window.WebComponents.ready) {
+      resolve();
+    } else {
+      window.addEventListener('WebComponentsReady', () => resolve());
+    }
+  });
+
   window.customElements.define(CatalystToggleButton.is, CatalystToggleButton);
-});
+})();
 
 // Export the element.
 export default CatalystToggleButton;

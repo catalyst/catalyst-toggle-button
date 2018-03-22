@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions, max-nested-callbacks */
+
 /**
  * Basics suite.
  */
@@ -36,7 +38,6 @@ suite('Basics', () => {
        * Test role.
        */
       test('role', () => {
-        // role
         expect(element.hasAttribute('role'), '"role" missing').to.be.true;
         expect(element.getAttribute('role')).to.equal(
           'button',
@@ -50,7 +51,7 @@ suite('Basics', () => {
       test('tabindex', () => {
         expect(element.hasAttribute('tabindex'), '"tabindex" missing').to.be
           .true;
-        expect(Number.parseInt(element.getAttribute('tabindex'))).to.equal(
+        expect(Number.parseInt(element.getAttribute('tabindex'), 10)).to.equal(
           0,
           '"tabindex" should be 0'
         );
