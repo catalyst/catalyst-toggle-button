@@ -34,6 +34,7 @@ class CatalystToggleButton extends SuperClass {
    * The element's tag name.
    *
    * @public
+   * @readonly
    * @returns {string}
    */
   static get is() {
