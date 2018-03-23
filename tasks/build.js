@@ -38,8 +38,7 @@ function createElementModule() {
     )
     .pipe(
       rename({
-        basename: config.element.tag,
-        extname: '.js'
+        basename: config.element.tag
       })
     )
     .pipe(gulp.dest(`./${config.temp.path}`));
@@ -215,9 +214,9 @@ function createElementScript() {
       })
     )
     .pipe(
-      rename({
-        basename: config.element.tag,
-        extname: '.script.js'
+      rename(path => {
+        path.basename = config.element.tag;
+        path.extname = `.script${path.extname}`;
       })
     )
     .pipe(gulp.dest(`./${config.temp.path}`));
