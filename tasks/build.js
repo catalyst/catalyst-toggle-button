@@ -327,7 +327,7 @@ gulp.task(
         webpackStream(
           {
             target: 'web',
-            mode: 'production',
+            mode: 'none',
             output: {
               chunkFilename: `${config.element.tag}.part-[id].es5.min.js`,
               filename: `${config.element.tag}.es5.min.js`
