@@ -53,7 +53,7 @@ class CatalystToggleButton extends SuperClass {
     template.innerHTML = `<style>[[inject:style]][[endinject]]</style>[[inject:template]][[endinject]]`; // eslint-disable-line quotes
 
     // If using ShadyCSS.
-    if (window.ShadyCSS !== undefined) {
+    if (window.ShadyCSS != null) {
       // Rename classes as needed to ensure style scoping.
       window.ShadyCSS.prepareTemplate(template, CatalystToggleButton.is);
     }
@@ -97,7 +97,7 @@ class CatalystToggleButton extends SuperClass {
 (async () => {
   // Make sure the polyfills are ready (if they are being used).
   await new Promise(resolve => {
-    if (window.WebComponents === undefined || window.WebComponents.ready) {
+    if (window.WebComponents == null || window.WebComponents.ready) {
       resolve();
     } else {
       window.addEventListener('WebComponentsReady', () => resolve());
